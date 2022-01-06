@@ -370,34 +370,6 @@
 					<h1 class="text-2xl font-semibold mb-8">Updates</h1>
 					<!-- <UpdateComposer /> -->
 					<UpdateCard />
-
-					<!-- Another style for UpdateCard -->
-					<!-- <div class="rounded-2xl px-1 py-2 bg-BlueNCS-200 my-2 border-2 border-BlueNCS-400">
-						<div class="flex flex-row justify-between py-1 mx-2">
-							<p class="text-sm my-auto text-BlueNCS-600 font-['Space_Mono']">Travel</p>
-							<i class="ri-map-2-line text-BlueNCS-500" />
-						</div>
-
-						<div class="rounded-xl my-2 px-2 py-3 bg-white">
-							<h2 class="text-lg font-semibold">New Zealand</h2>
-							<p class="">Ipsum lorem dolor sit amet consectetur adipisicing elit.</p>
-						</div>
-						<div class="flex flex-row justify-between py-1 mx-2">
-							<p class="text-sm my-auto text-BlueNCS-600 font-['Space_Mono']">15 December 2021</p>
-							<div class="flex space-x-1 overflow-visible">
-								<img
-									class="inline-block h-5 w-5 rounded-full hover:drop-shadow-md transition-all"
-									src="https://avatars.githubusercontent.com/u/43839115?v=4"
-									alt="YYCH"
-								/>
-								<img
-									class="inline-block h-5 w-5 rounded-full hover:drop-shadow-md transition-all"
-									src="https://avatars.githubusercontent.com/u/34772239?v=4"
-									alt="Runkai"
-								/>
-							</div>
-						</div>
-					</div> -->
 				</div>
 				<!-- End main area -->
 			</main>
