@@ -368,7 +368,7 @@
 				<!-- Start main area-->
 				<div class="max-w-xl py-16 mx-auto">
 					<h1 class="text-2xl font-semibold mb-8">Updates</h1>
-					<!-- <UpdateComposer /> -->
+					<UpdateComposer />
 					<UpdateCard />
 				</div>
 				<!-- End main area -->
