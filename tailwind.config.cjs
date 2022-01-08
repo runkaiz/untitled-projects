@@ -2,7 +2,7 @@ const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
 	purge: ['./src/**/*.svelte', './src/**/*.css'],
-	darkMode: false,
+	media: false,
 	theme: {
 		extend: {
 			colors: {

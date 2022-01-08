@@ -1,7 +1,7 @@
 <script>
 	export let title;
 	export let author;
-	export let absract;
+	export let abstract;
 	export let date;
 </script>
 
@@ -20,7 +20,7 @@
 	</div>
 	<div class="mt-1">
 		<p class="line-clamp-2 text-sm text-gray-600">
-			{absract}
+			{abstract}
 		</p>
 	</div>
 </div>

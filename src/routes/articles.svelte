@@ -1,5 +1,8 @@
 <script>
 	import ArticleTile from '$lib/ArticleTile.svelte';
+	import { convertToHTML, getMarkdown } from "../lib/api";
+
+	console.log(getMarkdown('1641193390327'));
 </script>
 
 <div class="min-h-screen flex">
@@ -380,7 +383,7 @@
 				<ArticleTile
 					title="Ipsum lorem"
 					author="Runkai"
-					absract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
+					abstract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
                 rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt
                 maiores et accusamus quod dolor."
 					date="today"
@@ -388,7 +391,7 @@
 				<ArticleTile
 					title="Ipsum lorem"
 					author="Runkai & Y. Chen"
-					absract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
+					abstract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
                 rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt
                 maiores et accusamus quod dolor."
 					date="today"
