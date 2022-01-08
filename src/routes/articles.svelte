@@ -1,8 +1,13 @@
+<svelte:options immutable={false} />
+
 <script>
 	import ArticleTile from '$lib/ArticleTile.svelte';
-	import { convertToHTML, getMarkdown } from "../lib/api";
+	import { getMarkdown, getPosts } from "../lib/api";
 
-	console.log(getMarkdown('1641193390327'));
+	let posts;
+	posts = getPosts().then(text => {
+				return JSON.parse(text);
+			})
 </script>
 
 <div class="min-h-screen flex">
@@ -380,6 +385,18 @@
 				class="hidden divide-y relative xl:order-first xl:flex xl:flex-col flex-shrink-0 w-96 border-r border-gray-200 overflow-y-auto"
 			>
 				<!-- Start secondary column (hidden on smaller screens) -->
+				{#await posts then data}
+					{#each data as post, idx}
+						<ArticleTile
+							title="To be implemented"
+							author="Your friendly neigborhood FBI agent"
+							abstract="To be implemented"
+							date={((new Date(parseInt(post.name))).getMonth() + 1) +
+								"/"+ (new Date(parseInt(post.name))).getDate() +
+								"/"+ (new Date(parseInt(post.name))).getFullYear()}
+						/>
+					{/each}
+				{/await}
 				<ArticleTile
 					title="Ipsum lorem"
 					author="Runkai"

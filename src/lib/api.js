@@ -32,3 +32,18 @@ export async function getMarkdown(id) {
     console.error(`Error in load function for /: ${error}`);
   }
 }
+
+export async function getPosts() {
+
+  var url = new URL('https://api.untitled.workers.dev')
+
+  try {
+    const res = await fetch(url.href, {
+      method: 'GET'
+    })
+    
+    return res.text()
+  } catch (error) {
+    console.error(`Error in load function for /: ${error}`);
+  }
+}
