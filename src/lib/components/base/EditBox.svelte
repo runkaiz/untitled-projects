@@ -1,3 +1,4 @@
+<!-- TODO: Change this into EditBox -->
 <script>
 	import { fly, scale } from 'svelte/transition';
 	import { bounceIn } from 'svelte/easing';
@@ -21,28 +22,33 @@
 		}
 	};
 
+	function refreshUpdates() {
+		// TODO: fetch updates from server and update the state
+		console.log('refreshUpdates');
+	}
+
 	function postUpdate(event) {
 		// Get form input:
 		// - title (string)
 		// - content (string)
 		// - image-upload (file)
 
-		// const form = event.target;
-		// const formData = new FormData(form);
+		const form = event.target;
+		const formData = new FormData(form);
 
 		// Validate form input:
 		// - title is not empty
 		// - content is not empty
 
-		// if (newUpdate.title.length === 0) {
-		// 	alert('Title is required');
-		// 	return;
-		// }
+		if (newUpdate.title.length === 0) {
+			alert('Title is required');
+			return;
+		}
 
-		// if (newUpdate.content.length === 0) {
-		// 	alert('Content is required');
-		// 	return;
-		// }
+		if (newUpdate.content.length === 0) {
+			alert('Content is required');
+			return;
+		}
 
 		console.log('Update data:', newUpdate);
 
@@ -52,22 +58,41 @@
 		// - imgUrl (optional)
 
 		// If successful, refresh the page
-		// fetch('/api/posts', {
-		// 	method: 'POST',
-		// 	body: {
-		// 		title: title,
-		// 		content: content,
-		// 		imgUrl: imgUrl
-		// 	}
-		// })
-		// 	.then((response) => response.json())
-		// 	.then((data) => {
-		// 		if (data.success) {
-		// 			window.location.reload();
-		// 		} else {
-		// 			alert(data.message);
-		// 		}
-		// 	});
+		const baseUrl = import.meta.env.VITE_API_BASE_URL;
+		// A list of authors who were tagged in the update
+		const tagged = [];
+		if (newUpdate.tagged.nico) {
+			tagged.push('nico');
+		}
+		if (newUpdate.tagged.yao) {
+			tagged.push('yao');
+		}
+		// Set the request headers
+		const headers = new Headers();
+		const token = import.meta.env.VITE_API_TOKEN;
+		headers.append('Content-Type', 'application/json');
+		headers.append('Accept', 'application/json');
+		headers.append('Authorization', `Token ${token}`);
+		fetch(`${baseUrl}/updates/`, {
+			method: 'POST',
+			headers,
+			body: {
+				title: newUpdate.title,
+				content: newUpdate.content,
+				imgUrl: newUpdate.imgUrl,
+				date: Date.now(),
+				tagged: tagged
+			}
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				if (!data.error) {
+					refreshUpdates();
+				} else {
+					// TODO handle error in UI
+					alert(data.message);
+				}
+			});
 	}
 
 	async function handleImagePreview(event) {

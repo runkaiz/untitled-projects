@@ -1,13 +1,13 @@
 <svelte:options immutable={false} />
 
 <script>
-	import ArticleTile from '$lib/ArticleTile.svelte';
-	import { getMarkdown, getPosts } from "../lib/api";
+	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
+	import { getMarkdown, getPosts } from '../lib/api';
 
 	let posts;
-	posts = getPosts().then(text => {
-				return JSON.parse(text);
-			})
+	posts = getPosts().then((text) => {
+		return JSON.parse(text);
+	});
 </script>
 
 <div class="min-h-screen flex">
@@ -392,9 +392,12 @@
 							title="To be implemented"
 							author="Your friendly neigborhood FBI agent"
 							abstract="To be implemented"
-							date={((new Date(parseInt(post.name))).getMonth() + 1) +
-								"/"+ (new Date(parseInt(post.name))).getDate() +
-								"/"+ (new Date(parseInt(post.name))).getFullYear()}
+							date={new Date(parseInt(post.name)).getMonth() +
+								1 +
+								'/' +
+								new Date(parseInt(post.name)).getDate() +
+								'/' +
+								new Date(parseInt(post.name)).getFullYear()}
 						/>
 					{/each}
 				{/await}
