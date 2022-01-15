@@ -1,0 +1,44 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
+}
+
+datasource db {
+  provider = "mysql"
+  url = env("DATABASE_URL")
+  shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
+}
+
+// Define the models
+// https://www.prisma.io/docs/concepts/components/prisma-schema/data-model
+
+model User {
+  id                Int       @id @default(autoincrement())
+  email             String    @unique
+  name              String?
+  role              Role      @default(USER)
+  password          String
+  writtenNotes      Note[]    @relation("WrittenNotes")
+  coauthoredNotes   Note[]    @relation("CoauthoredNotes")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Note {
+  id          Int       @default(autoincrement()) @id
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  title       String    @db.VarChar(255)
+  content     String?
+  author      User      @relation("WrittenNotes", fields: [authorId], references: [id])
+  authorId    Int      
+  coauthor    User?     @relation("CoauthoredNotes", fields: [coauthorId], references: [id])
+  coauthorId  Int?
+}
