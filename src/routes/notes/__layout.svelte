@@ -1,27 +1,37 @@
+<script context="module">
+	export async function load({ fetch }) {
+		const url = `/notes/list.json`;
+		const res = await fetch(url);
+
+		if (res.ok) {
+			return {
+				props: {
+					notes: await res.json()
+				}
+			};
+		}
+
+		return {
+			status: res.status,
+			error: new Error(`Failed to load ${url}`)
+		};
+	}
+</script>
+
 <script>
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
+	export let notes;
+
+	console.log(notes);
 </script>
 
 <MainPanel>
 	<slot />
 </MainPanel>
 <SidePanel>
-	<ArticleTile
-		title="Ipsum lorem"
-		author="Runkai"
-		abstract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
-				rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt
-				maiores et accusamus quod dolor."
-		date="today"
-	/>
-	<ArticleTile
-		title="Ipsum lorem"
-		author="Runkai & Y. Chen"
-		abstract="Doloremque dolorem maiores assumenda dolorem facilis. Velit vel in a rerum natus facere. Enim
-				rerum eaque qui facilis. Numquam laudantium sed id dolores omnis in. Eos reiciendis deserunt
-				maiores et accusamus quod dolor."
-		date="today"
-	/></SidePanel
->
+	{#each notes as note}
+		<ArticleTile {...note} />
+	{/each}
+</SidePanel>
