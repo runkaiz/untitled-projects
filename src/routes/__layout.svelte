@@ -2,6 +2,7 @@
 	import '../tailwind.css';
 	import { menuItems } from '$lib/menu-items';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
+	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
 	let showLogin = false;
 </script>
 
@@ -15,7 +16,7 @@
 	/>
 </svelte:head>
 
-<ReactivePanel bind:active={showLogin} title="Login">Not ready yet.</ReactivePanel>
+<ReactivePanel bind:active={showLogin} title="Login"><LoginForm /></ReactivePanel>
 <div class="min-h-screen flex">
 	<!-- Static sidebar for desktop -->
 	<div class="hidden lg:flex lg:flex-shrink-0">
