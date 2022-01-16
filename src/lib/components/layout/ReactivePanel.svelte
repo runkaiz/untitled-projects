@@ -1,11 +1,13 @@
 <script>
 	import classes from 'svelte-transition-classes';
+	import Keydown from 'svelte-keydown';
 	export let active;
 	export let title;
 	export let description = '';
 </script>
 
 {#if active}
+	<Keydown on:Escape={() => (active = false)} />
 	<div
 		class="fixed z-50 inset-0 overflow-hidden"
 		aria-labelledby="slide-over-title"
