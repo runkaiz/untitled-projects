@@ -1,12 +1,11 @@
 <script>
-	export let label;
-	export let name;
+	export let label = 'Password';
+	export let name = 'password';
 	export let placeholder = '';
 	export let value = '';
 	export let disabled = false;
-	export let leadingIconClass = null;
-	export let autocomplete = false;
-	export let required = false;
+	export let leadingIconClass = '';
+	export let autocomplete = undefined;
 </script>
 
 <div>
@@ -22,11 +21,12 @@
 		<input
 			{name}
 			id={name}
+			type="password"
 			{placeholder}
 			bind:value
 			{disabled}
 			{autocomplete}
-			{required}
+			required
 			class="appearance-none block w-full  py-2 {leadingIconClass
 				? 'pl-9 pr-2'
 				: 'px-3'} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:shadow-md transition-shadow sm:text-sm"
