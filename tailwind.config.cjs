@@ -4,6 +4,9 @@ module.exports = {
 	purge: ['./src/**/*.svelte', './src/**/*.css'],
 	media: false,
 	theme: {
+		fontFamily: {
+			sans: ['Inter', ...defaultTheme.fontFamily.sans]
+		},
 		extend: {
 			colors: {
 				BlueNCS: {
@@ -12,17 +15,11 @@ module.exports = {
 					300: '#E4F1F9',
 					400: '#D3E7F1',
 					500: '#89BCD7',
-					600: '#056EA6',
-			},
-		},
-	},
-	},
-	variants: {
-		extend: {
-			fontFamily: {
-				sans: ['Inter var', ...defaultTheme.fontFamily.sans],
-			},
+					600: '#056EA6'
+				}
+			}
 		}
 	},
+	variants: {},
 	plugins: [require('@tailwindcss/line-clamp')]
 };
