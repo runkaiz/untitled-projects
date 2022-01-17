@@ -23,8 +23,6 @@
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
 	export let notes;
-
-	console.log(notes);
 </script>
 
 <MainPanel>
