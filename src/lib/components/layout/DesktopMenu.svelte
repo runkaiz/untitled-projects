@@ -36,10 +36,13 @@
 										target={item.href.startsWith('http') ? '_blank' : ''}
 										class="{$page.url.pathname === item.href
 											? 'text-gray-900 bg-gray-50'
-											: 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors'} group flex items-center px-2 py-2 mb-1 text-sm rounded-md"
+											: 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors'} flex items-center px-2 py-2 mb-1 text-sm rounded-md"
 									>
-										<i class="{item.iconClass} mr-2" />
+										<i class="{item.iconClass} mr-2 items-center" />
 										{item.label}
+										{@html item.href.startsWith('http')
+											? '<i class="ri-arrow-right-up-line ml-auto text-gray-400"/>'
+											: ''}
 									</a>
 								{/each}
 							</div>
