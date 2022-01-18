@@ -40,9 +40,9 @@
 									>
 										<i class="{item.iconClass} mr-2 items-center" />
 										{item.label}
-										{@html item.href.startsWith('http')
-											? '<i class="ri-arrow-right-up-line ml-auto text-gray-400"/>'
-											: ''}
+										{#if item.href.startsWith('http')}
+											<i class="ri-arrow-right-up-line ml-auto text-gray-400" />
+										{/if}
 									</a>
 								{/each}
 							</div>
