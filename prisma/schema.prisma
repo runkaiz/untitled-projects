@@ -25,7 +25,7 @@ model User {
   salt            String       @default(cuid())
   tokens          Token[]
   writtenNotes    Note[]       @relation("WrittenNotes")
-  coauthoredNotes Note[]       @relation("CoauthoredNotes")
+  coauthoredNotes Note[]
   photos          Photo[]
   photoAlbums     PhotoAlbum[]
 }
@@ -54,8 +54,7 @@ model Note {
   content    String   @db.Text
   author     User     @relation("WrittenNotes", fields: [authorId], references: [id])
   authorId   Int
-  coauthor   User?    @relation("CoauthoredNotes", fields: [coauthorId], references: [id])
-  coauthorId Int?
+  coauthors  User[]
 }
 
 model Photo {
