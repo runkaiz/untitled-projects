@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-	purge: ['./src/**/*.svelte', './src/**/*.css'],
+	content: ['./src/**/*.{svelte, css}', './src/app.html'],
 	media: false,
 	theme: {
 		fontFamily: {
