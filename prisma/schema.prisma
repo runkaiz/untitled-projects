@@ -21,8 +21,7 @@ model User {
   email           String       @unique
   name            String?
   role            Role         @default(USER)
-  password        String
-  salt            String       @default(cuid())
+  passwordHash    String
   tokens          Token[]
   writtenNotes    Note[]       @relation("WrittenNotes")
   coauthoredNotes Note[]
