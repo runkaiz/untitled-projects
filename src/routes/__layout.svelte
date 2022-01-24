@@ -1,10 +1,10 @@
 <script>
 	import '../tailwind.css';
 	import DesktopMenu from '$lib/components/layout/DesktopMenu.svelte';
-	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
 	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
 	import OffCanvasMenu from '$lib/components/layout/OffCanvasMenu.svelte';
+	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
 	let showLogin = false;
 	let showOffCanvasMenu = false;
 </script>
@@ -27,7 +27,8 @@
 		<div class="flex-1 relative z-0 flex overflow-hidden">
 			<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 				<div class="flex-1 relative z-0 flex overflow-hidden">
-					<MainPanel bind:shouldShowOffCanvasMenu={showOffCanvasMenu}><slot /></MainPanel>
+					<MobileTopBar bind:shouldShowOffCanvasMenu={showOffCanvasMenu} />
+					<slot />
 				</div>
 			</div>
 		</div>
