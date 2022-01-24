@@ -1,12 +1,9 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
-
-	import OffCanvasMenu from './OffCanvasMenu.svelte';
-	let showOffCanvasMenu = false;
+	export let shouldShowOffCanvasMenu;
 </script>
 
-<OffCanvasMenu bind:show={showOffCanvasMenu} />
 <main class="flex-1 relative z-0 overflow-y-auto focus:outline-none xl:order-last">
 	<!-- Top nav bar for toggling navigation on mobile devices. -->
 	<div class="lg:hidden">
@@ -30,7 +27,7 @@
 			<div>
 				<button
 					type="button"
-					on:click={() => (showOffCanvasMenu = !showOffCanvasMenu)}
+					on:click={() => (shouldShowOffCanvasMenu = !shouldShowOffCanvasMenu)}
 					class="-mr-3 h-11 w-11 inline-flex items-center justify-center"
 				>
 					<span class="sr-only">Open sidebar</span>

@@ -1,6 +1,12 @@
 <script>
 	import '../tailwind.css';
 	import DesktopMenu from '$lib/components/layout/DesktopMenu.svelte';
+	import MainPanel from '$lib/components/layout/MainPanel.svelte';
+	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
+	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
+	import OffCanvasMenu from '$lib/components/layout/OffCanvasMenu.svelte';
+	let showLogin = false;
+	let showOffCanvasMenu = false;
 </script>
 
 <svelte:head>
@@ -14,12 +20,14 @@
 </svelte:head>
 
 <div class="min-h-screen flex">
-	<DesktopMenu />
+	<ReactivePanel bind:active={showLogin} title="Login"><LoginForm /></ReactivePanel>
+	<OffCanvasMenu bind:show={showOffCanvasMenu} />
+	<DesktopMenu bind:shouldShowLogin={showLogin} />
 	<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 		<div class="flex-1 relative z-0 flex overflow-hidden">
 			<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 				<div class="flex-1 relative z-0 flex overflow-hidden">
-					<slot />
+					<MainPanel bind:shouldShowOffCanvasMenu={showOffCanvasMenu}><slot /></MainPanel>
 				</div>
 			</div>
 		</div>

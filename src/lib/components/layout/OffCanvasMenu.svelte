@@ -3,16 +3,10 @@
 	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
 	export let show = false;
-
-	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
-	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
-	let showLogin = false;
+	export let shouldShowLogin;
 </script>
 
 {#if show}
-	<ReactivePanel bind:active={showLogin} title="Login">
-		<LoginForm />
-	</ReactivePanel>
 	<!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
 	<div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
 		<!--
@@ -137,7 +131,7 @@
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
 				<button
-					on:click={() => (showLogin = !showLogin)}
+					on:click={() => (shouldShowLogin = !shouldShowLogin)}
 					class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
 				>
 					Login
