@@ -1,9 +1,30 @@
 <script>
 	import PasswordField from '$lib/components/base/PasswordField.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
+
+	async function login(event) {
+		const form = event.target;
+		const auth = new FormData(form);
+		await fetch('/auth/login.json', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: auth.get('email'),
+				password: auth.get('password'),
+				remember: auth.get('remember-me') === 'on'
+			}),
+			credentials: 'same-origin'
+		}).then((response) => {
+			// TODO: Implement response handling
+			console.log(response);
+		});
+	}
 </script>
 
-<form class="space-y-6" action="#" method="POST">
+<form class="space-y-6" on:submit|preventDefault={login}>
 	<TextField name="email" label="Email" autocomplete="email" required={true} />
 
 	<PasswordField autocomplete="current-password" />
