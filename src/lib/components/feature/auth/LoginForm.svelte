@@ -1,6 +1,9 @@
 <script>
 	import PasswordField from '$lib/components/base/PasswordField.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	async function login(event) {
 		const form = event.target;
@@ -15,11 +18,15 @@
 				email: auth.get('email'),
 				password: auth.get('password'),
 				remember: auth.get('remember-me') === 'on'
-			}),
-			credentials: 'same-origin'
+			})
 		}).then((response) => {
-			// TODO: Implement response handling
-			console.log(response);
+			response.json().then((data) => {
+				if (!data.error) {
+					dispatch('success', { user: data.user });
+				} else {
+					// TODO: Handle error in UI
+				}
+			});
 		});
 	}
 </script>
@@ -37,6 +44,7 @@
 				type="checkbox"
 				class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 			/>
+			<!-- TODO: Handle this... -->
 			<label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
 		</div>
 

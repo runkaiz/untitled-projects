@@ -1,6 +1,7 @@
 <script>
 	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
+	import { currentUser } from '$lib/stores/user';
 	export let shouldShowLogin;
 </script>
 
@@ -48,12 +49,18 @@
 				</nav>
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-				<button
-					on:click={() => (shouldShowLogin = !shouldShowLogin)}
-					class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
-				>
-					Login
-				</button>
+				{#if !$currentUser}
+					<button
+						on:click={() => (shouldShowLogin = !shouldShowLogin)}
+						class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
+					>
+						Login
+					</button>
+				{:else}
+					<p class="flex-shrink-0 w-full group block text-center text-sm text-gray-500">
+						👋 Hi, {$currentUser.name}!
+					</p>
+				{/if}
 			</div>
 		</div>
 	</div>
