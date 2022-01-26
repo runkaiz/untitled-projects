@@ -15,8 +15,6 @@ export async function post({ body }) {
 
 		if (!isValid) throw new Error('Invalid password');
 
-		console.log(user);
-
 		const token = generateToken(user);
 
 		return {
@@ -27,9 +25,7 @@ export async function post({ body }) {
 				'Set-Cookie': `token=${token}; HttpOnly`
 			},
 			body: {
-				user: {
-					name: user.name
-				}
+				message: 'Successfully logged in'
 			}
 		};
 	} catch (error) {
