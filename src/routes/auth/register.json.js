@@ -2,37 +2,42 @@ import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-async export function post({ body }) {
-  try {
-    const { email, password, name } = body;
-    const user = await prisma.user.findFirst({
-      where: { email }
-    });
+export async function post({ body }) {
+	try {
+		const { email, password, name } = body;
 
-    if (user) throw new Error('User already exists');
+		if (!email || !password || !name) {
+			throw new Error('Invalid data');
+		}
 
-    const passwordHash = await bcrypt.hash(password, 10);
+		const user = await prisma.user.findFirst({
+			where: { email }
+		});
 
-    await prisma.user.create({
-      data: {
-        name,
-        email,
-        passwordHash
-      }
-    });
+		if (user) throw new Error('User already exists');
 
-    return {
-      status: 200,
-      body: {
-        message: 'User created',
-      }
-    };
-  } catch (error) {
-    return {
-      status: 401,
-      body: {
-        error: error.message
-      }
-    };
-  }
+		const passwordHash = await bcrypt.hash(password, 10);
+
+		await prisma.user.create({
+			data: {
+				name,
+				email,
+				passwordHash
+			}
+		});
+
+		return {
+			status: 200,
+			body: {
+				message: 'User created'
+			}
+		};
+	} catch (error) {
+		return {
+			status: 401,
+			body: {
+				error: error.message
+			}
+		};
+	}
 }
