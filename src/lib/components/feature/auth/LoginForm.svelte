@@ -1,9 +1,37 @@
 <script>
 	import PasswordField from '$lib/components/base/PasswordField.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
+	import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
+
+	async function login(event) {
+		const form = event.target;
+		const auth = new FormData(form);
+		await fetch('/auth/login.json', {
+			method: 'POST',
+			credentials: 'same-origin',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				email: auth.get('email'),
+				password: auth.get('password'),
+				remember: auth.get('remember-me') === 'on'
+			})
+		}).then((response) => {
+			response.json().then((data) => {
+				if (!data.error) {
+					dispatch('success', { user: data.user });
+				} else {
+					// TODO: Handle error in UI
+				}
+			});
+		});
+	}
 </script>
 
-<form class="space-y-6" action="#" method="POST">
+<form class="space-y-6" on:submit|preventDefault={login}>
 	<TextField name="email" label="Email" autocomplete="email" required={true} />
 
 	<PasswordField autocomplete="current-password" />
@@ -16,6 +44,7 @@
 				type="checkbox"
 				class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 			/>
+			<!-- TODO: Handle this... -->
 			<label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
 		</div>
 

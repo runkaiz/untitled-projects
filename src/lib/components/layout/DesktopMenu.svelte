@@ -1,12 +1,10 @@
 <script>
 	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
-	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
-	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
-	let showLogin = false;
+	import { currentUser } from '$lib/stores/user';
+	export let shouldShowLogin;
 </script>
 
-<ReactivePanel bind:active={showLogin} title="Login"><LoginForm /></ReactivePanel>
 <div class="hidden lg:flex lg:flex-shrink-0">
 	<div class="flex flex-col w-64">
 		<!-- Sidebar component, swap this element with another sidebar if you like -->
@@ -51,12 +49,18 @@
 				</nav>
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-				<button
-					on:click={() => (showLogin = !showLogin)}
-					class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
-				>
-					Login
-				</button>
+				{#if !$currentUser}
+					<button
+						on:click={() => (shouldShowLogin = !shouldShowLogin)}
+						class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
+					>
+						Login
+					</button>
+				{:else}
+					<p class="flex-shrink-0 w-full group block text-center text-sm text-gray-500">
+						👋 Hi, {$currentUser.name}!
+					</p>
+				{/if}
 			</div>
 		</div>
 	</div>
