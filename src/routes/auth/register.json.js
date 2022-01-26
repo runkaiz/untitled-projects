@@ -2,8 +2,11 @@ import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcrypt';
 import { generateToken } from '$lib/utils/token';
 
-export async function post({ body }) {
+export async function post({ body, locals }) {
 	try {
+		if (!locals.user || !locals.user.isAdmin)
+			throw new Error('Only admins can register new users for now');
+
 		const { email, password, name } = body;
 
 		if (!email || !password || !name) {
