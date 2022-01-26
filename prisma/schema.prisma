@@ -21,9 +21,7 @@ model User {
   email           String       @unique
   name            String?
   role            Role         @default(USER)
-  password        String
-  salt            String       @default(cuid())
-  tokens          Token[]
+  passwordHash    String
   writtenNotes    Note[]       @relation("WrittenNotes")
   coauthoredNotes Note[]
   photos          Photo[]
@@ -33,16 +31,6 @@ model User {
 enum Role {
   USER
   ADMIN
-}
-
-model Token {
-  id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  expiresAt DateTime
-  name      String
-  token     String   @unique
-  userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Note {

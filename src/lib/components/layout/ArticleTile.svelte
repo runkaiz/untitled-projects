@@ -9,13 +9,13 @@
 	export let slug;
 </script>
 
-<div class="p-3 cursor-pointer hover:bg-gray-200 transition-colors">
+<a href="/notes/{slug}" class="p-3 cursor-pointer hover:bg-gray-200 transition-colors">
 	<div class="flex justify-between space-x-3">
 		<div class="min-w-0 flex-1">
-			<a href="/notes/{slug}" class="block focus:outline-none">
+			<div class="block focus:outline-none">
 				<p class="text-sm font-medium text-gray-900 truncate">{title}</p>
 				<p class="text-sm text-gray-500 truncate">{author}</p>
-			</a>
+			</div>
 		</div>
 		<p class="flex-shrink-0 whitespace-nowrap text-sm text-gray-500">
 			{createdAt}
@@ -27,4 +27,4 @@
 			{abstract}
 		</p>
 	</div>
-</div>
+</a>

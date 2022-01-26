@@ -2,19 +2,14 @@
 	import classes from 'svelte-transition-classes';
 	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
+	import { currentUser } from '$lib/stores/user';
 	export let show = false;
-
-	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
-	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
-	let showLogin = false;
+	export let shouldShowLogin;
 </script>
 
 {#if show}
-	<ReactivePanel bind:active={showLogin} title="Login">
-		<LoginForm />
-	</ReactivePanel>
 	<!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
-	<div class="fixed inset-0 flex z-40 lg:hidden" role="dialog" aria-modal="true">
+	<div class="fixed inset-0 flex z-50 lg:hidden" role="dialog" aria-modal="true">
 		<!--
       Off-canvas menu overlay, show/hide based on off-canvas menu state.
     -->
@@ -136,12 +131,18 @@
 				</nav>
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-				<button
-					on:click={() => (showLogin = !showLogin)}
-					class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
-				>
-					Login
-				</button>
+				{#if !$currentUser}
+					<button
+						on:click={() => (shouldShowLogin = !shouldShowLogin)}
+						class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
+					>
+						Login
+					</button>
+				{:else}
+					<p class="flex-shrink-0 w-full group block text-center text-sm text-gray-500">
+						👋 Hi, {$currentUser.name}!
+					</p>
+				{/if}
 			</div>
 		</div>
 
