@@ -1,6 +1,6 @@
 import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '$lib/utils/token';
 
 export async function post({ body }) {
 	try {
@@ -36,15 +36,4 @@ export async function post({ body }) {
 			}
 		};
 	}
-}
-
-function generateToken(user) {
-	const payload = {
-		userId: user.id,
-		isAdmin: user.role === 'ADMIN',
-		iat: Date.now()
-	};
-
-	// No expiry date for now.
-	return jwt.sign(payload, 'process.env.JWT_SECRET');
 }
