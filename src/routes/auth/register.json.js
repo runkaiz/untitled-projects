@@ -36,7 +36,12 @@ export async function post({ body }) {
 				'Set-Cookie': `token=${token}; HttpOnly`
 			},
 			body: {
-				message: 'User created'
+				error: null,
+				user: {
+					userId: user.id,
+					name: user.name,
+					isAdmin: user.role === 'ADMIN'
+				}
 			}
 		};
 	} catch (error) {

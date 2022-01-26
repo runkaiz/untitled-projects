@@ -22,10 +22,17 @@ export async function post({ body }) {
 			// Set token as a HTTP only cookie.
 			// This is to prevent the token from being read by XSS.
 			headers: {
-				'Set-Cookie': `token=${token}; HttpOnly`
+				'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
+					Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
+				).toUTCString()}; Path=/`
 			},
 			body: {
-				message: 'Successfully logged in'
+				error: null,
+				user: {
+					userId: user.id,
+					name: user.name,
+					isAdmin: user.role === 'ADMIN'
+				}
 			}
 		};
 	} catch (error) {
