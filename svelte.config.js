@@ -9,8 +9,8 @@ const config = {
 		target: '#svelte',
 
 		vite: {
-			ssr: {
-				noExternal: ['mock-aws-s3', 'aws-sdk', 'nock']
+			optimizeDeps: {
+				include: ['mock-aws-s3', 'aws-sdk', 'nock'] // For bcrypt
 			}
 		}
 	}
