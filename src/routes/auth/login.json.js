@@ -2,7 +2,8 @@ import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcrypt';
 import { generateToken } from '$lib/utils/token';
 
-export async function post({ body }) {
+export async function post({ request }) {
+	const body = await request.json();
 	try {
 		const { email, password } = body;
 		const user = await prisma.user.findFirst({

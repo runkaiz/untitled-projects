@@ -7,7 +7,7 @@ import { verifyToken } from '$lib/utils/token';
 // TODO: Should we use localStorage instead?
 
 export async function handle({ event, resolve }) {
-	const cookies = cookie.parse(event.request.headers.cookie || '');
+	const cookies = cookie.parse(event.request.headers.get('cookie') || '');
 	const token = cookies.token;
 
 	if (token) {
