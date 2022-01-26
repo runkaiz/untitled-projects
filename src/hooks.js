@@ -6,30 +6,30 @@ import { verifyToken } from '$lib/utils/token';
 //  Con: I hate to add this performance hit to every request.
 // TODO: Should we use localStorage instead?
 
-export async function handle({ request, resolve }) {
-	const cookies = cookie.parse(request.headers.cookie || '');
+export async function handle({ event, resolve }) {
+	const cookies = cookie.parse(event.request.headers.cookie || '');
 	const token = cookies.token;
 
 	if (token) {
 		const payload = verifyToken(token);
 		if (payload) {
-			request.locals.user = payload;
-			const response = await resolve(request);
+			event.locals.user = payload;
+			const response = await resolve(event);
 
 			return response;
 		} else {
 			// Remove token from the cookie, so future requests won't go through verification again.
-			const response = await resolve(request);
+			const response = await resolve(event);
 			response.headers = { 'Set-Cookie': 'token=; Max-Age=0; Path=/' };
 			return response;
 		}
 	}
 
-	return resolve(request);
+	return resolve(event);
 }
 
-export async function getSession(request) {
-	const user = request.locals.user;
+export async function getSession(event) {
+	const user = event.locals.user;
 
 	return {
 		user: user ? user : null
