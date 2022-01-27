@@ -1,13 +1,3 @@
-<script context="module">
-	export async function load({ session }) {
-		return {
-			props: {
-				user: session.user
-			}
-		};
-	}
-</script>
-
 <script>
 	import '../tailwind.css';
 	import DesktopMenu from '$lib/components/layout/DesktopMenu.svelte';
@@ -15,20 +5,13 @@
 	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
 	import OffCanvasMenu from '$lib/components/layout/OffCanvasMenu.svelte';
 	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
-	import { onMount } from 'svelte';
-	import { currentUser } from '$lib/stores/user';
+	import { session } from '$app/stores';
 	let showLogin = false;
 	let showOffCanvasMenu = false;
 
-	export let user;
-
-	onMount(() => {
-		currentUser.set(user);
-	});
-
 	function updateUser(event) {
 		showLogin = false;
-		currentUser.set(event.detail.user);
+		session.user = event.detail.user;
 	}
 </script>
 
