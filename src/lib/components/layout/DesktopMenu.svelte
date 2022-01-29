@@ -31,7 +31,8 @@
 									<a
 										href={item.href}
 										target={item.href.startsWith('http') ? '_blank' : ''}
-										class="{$page.url.pathname === item.href
+										class="{item.href.split('/')[1] === $page.url.pathname.split('/')[1] &&
+										!item.href.startsWith('http')
 											? 'text-gray-900 bg-gray-50'
 											: 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors'} flex items-center px-2 py-2 mb-1 text-sm rounded-md"
 									>
