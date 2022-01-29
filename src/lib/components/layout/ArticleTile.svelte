@@ -2,6 +2,7 @@
 <svelte:options immutable={true} />
 
 <script>
+	import { page } from '$app/stores';
 	export let title;
 	export let author;
 	export let abstract;
@@ -9,7 +10,12 @@
 	export let slug;
 </script>
 
-<a href="/notes/{slug}" class="p-3 cursor-pointer hover:bg-gray-200 transition-colors">
+<a
+	href="/notes/{slug}"
+	class="p-3 cursor-pointer {$page.url.pathname.split('/').pop() === slug
+		? 'bg-gray-100'
+		: ''} hover:bg-gray-100 transition-colors"
+>
 	<div class="flex justify-between space-x-3">
 		<div class="min-w-0 flex-1">
 			<div class="block focus:outline-none">
