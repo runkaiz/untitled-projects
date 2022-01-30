@@ -6,6 +6,7 @@
 	export let disabled = false;
 	export let leadingIconClass = '';
 	export let autocomplete = undefined;
+	export let required = true;
 </script>
 
 <div>
@@ -26,7 +27,7 @@
 			bind:value
 			{disabled}
 			{autocomplete}
-			required
+			{required}
 			class="appearance-none block w-full  py-2 {leadingIconClass
 				? 'pl-9 pr-2'
 				: 'px-3'} border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:shadow-md transition-shadow sm:text-sm"
