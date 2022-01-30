@@ -32,12 +32,17 @@
 	import PasswordField from '$lib/components/base/PasswordField.svelte';
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
+	import Notification from '$lib/components/base/Notification.svelte';
 
 	export let user;
 
 	async function updateUser(event) {
 		const form = event.target;
 		const data = Object.fromEntries(new FormData(form));
+
+		if (data.currentPassword || data.newPassword) {
+			updatePassword(data.currentPassword, data.newPassword);
+		}
 
 		const url = `/auth/me.json`;
 		const res = await fetch(url, {
@@ -50,6 +55,26 @@
 
 		if (res.ok) {
 			this.user = await res.json();
+		}
+	}
+
+	async function updatePassword(currentPassword, newPassword) {
+		const url = `/auth/new-password.json`;
+		const res = await fetch(url, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				currentPassword,
+				newPassword
+			})
+		});
+
+		if (!res.ok) {
+			alert(`Failed to update password: ${await res.text()}`);
+		} else {
+			alert('Password updated');
 		}
 	}
 
@@ -96,7 +121,7 @@
 						<div class="col-span-6 sm:col-span-3">
 							<PasswordField
 								label="Current Password"
-								name="password-old"
+								name="currentPassword"
 								autocomplete="current-password"
 								required={false}
 							/>
@@ -104,7 +129,7 @@
 						<div class="col-span-6 sm:col-span-3">
 							<PasswordField
 								label="New Password"
-								name="password-new"
+								name="newPassword"
 								autocomplete="off"
 								required={false}
 							/>
