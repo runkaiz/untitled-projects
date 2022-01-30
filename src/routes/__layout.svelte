@@ -11,7 +11,7 @@
 
 	function updateUser(event) {
 		showLogin = false;
-		session.user = event.detail.user;
+		$session.user = event.detail.user;
 	}
 </script>
 
