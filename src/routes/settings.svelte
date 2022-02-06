@@ -57,6 +57,23 @@
 
 		if (res.ok) {
 			this.user = await res.json();
+			notificationMessages = [
+				...notificationMessages,
+				{
+					title: 'Your account information has been updated',
+					ok: true
+				}
+			];
+		} else {
+			const { message } = await res.json();
+			notificationMessages = [
+				...notificationMessages,
+				{
+					title: 'Failed to update your account information',
+					details: message,
+					ok: false
+				}
+			];
 		}
 	}
 
