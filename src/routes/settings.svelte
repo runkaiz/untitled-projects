@@ -36,6 +36,8 @@
 
 	export let user;
 
+	let notificationMessages = [];
+
 	async function updateUser(event) {
 		const form = event.target;
 		const data = Object.fromEntries(new FormData(form));
@@ -72,9 +74,14 @@
 		});
 
 		if (!res.ok) {
-			alert(`Failed to update password: ${await res.text()}`);
+			notificationMessages.push({
+				title: 'Failed to update password',
+				details: await res.text()
+			});
 		} else {
-			alert('Password updated');
+			notificationMessages.push({
+				title: 'Password updated'
+			});
 		}
 	}
 
@@ -92,6 +99,7 @@
 	}
 </script>
 
+<Notification bind:messages={notificationMessages} />
 <MainPanel>
 	<h1 class="font-semibold text-2xl">Settings</h1>
 	<div
