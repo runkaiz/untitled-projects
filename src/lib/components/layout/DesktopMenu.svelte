@@ -4,7 +4,7 @@
 	export let shouldShowLogin;
 </script>
 
-<div class="hidden lg:flex lg:flex-shrink-0">
+<div class="hidden lg:flex lg:flex-shrink-0 lg:fixed lg:inset-y-0 z-50">
 	<div class="flex flex-col w-64">
 		<!-- Sidebar component, swap this element with another sidebar if you like -->
 		<div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
@@ -57,9 +57,10 @@
 						Login
 					</button>
 				{:else}
-					<p class="flex-shrink-0 w-full group block text-center text-sm text-gray-500">
-						👋 Hi, {$session.user.name}!
-					</p>
+					<div class="flex flex-row justify-between grow text-sm text-gray-500">
+						<a href="/composer">New</a>
+						<a href="/settings"><i class="ri-user-settings-line" /></a>
+					</div>
 				{/if}
 			</div>
 		</div>

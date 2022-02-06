@@ -1,5 +1,5 @@
 import { prisma } from '$lib/prisma';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcryptjs';
 import { generateToken } from '$lib/utils/token';
 
 export async function post({ request, locals }) {

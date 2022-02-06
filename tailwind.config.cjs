@@ -17,6 +17,9 @@ module.exports = {
 					500: '#89BCD7',
 					600: '#056EA6'
 				}
+			},
+			order: {
+				second: '-9998'
 			}
 		}
 	},

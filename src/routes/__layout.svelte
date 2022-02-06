@@ -11,7 +11,7 @@
 
 	function updateUser(event) {
 		showLogin = false;
-		session.user = event.detail.user;
+		$session.user = event.detail.user;
 	}
 </script>
 
@@ -36,6 +36,8 @@
 			<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 				<div class="flex-1 relative z-0 flex overflow-hidden">
 					<MobileTopBar bind:shouldShowOffCanvasMenu={showOffCanvasMenu} />
+					<!-- To preserve the space for DesktopMenu -->
+					<div class="lg:flex lg:flex-col lg:w-64 lg:order-first" />
 					<slot />
 				</div>
 			</div>

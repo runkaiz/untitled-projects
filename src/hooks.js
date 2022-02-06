@@ -20,7 +20,7 @@ export async function handle({ event, resolve }) {
 		} else {
 			// Remove token from the cookie, so future requests won't go through verification again.
 			const response = await resolve(event);
-			response.headers = { 'Set-Cookie': 'token=; Max-Age=0; Path=/' };
+			response.headers = { 'Set-Cookie': 'token=; Max-Age=0; HttpOnly; Path=/' };
 			return response;
 		}
 	}
