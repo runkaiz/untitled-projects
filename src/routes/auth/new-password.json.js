@@ -1,4 +1,5 @@
 import * as bcrypt from 'bcryptjs';
+import { prisma } from '$lib/prisma';
 
 export async function post({ request, locals }) {
 	try {
