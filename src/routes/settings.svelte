@@ -74,14 +74,23 @@
 		});
 
 		if (!res.ok) {
-			notificationMessages.push({
-				title: 'Failed to update password',
-				details: await res.text()
-			});
+			const { message } = await res.json();
+			notificationMessages = [
+				...notificationMessages,
+				{
+					title: 'Failed to update password',
+					details: message,
+					ok: false
+				}
+			];
 		} else {
-			notificationMessages.push({
-				title: 'Password updated'
-			});
+			notificationMessages = [
+				...notificationMessages,
+				{
+					title: 'Password updated',
+					ok: true
+				}
+			];
 		}
 	}
 
