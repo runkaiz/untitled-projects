@@ -27,7 +27,8 @@ export async function get() {
 			day: 'numeric',
 			year: 'numeric'
 		}),
-		abstract: note.content.substring(0, 120)
+		abstract: note.content.substring(0, 120),
+		isDraft: note.isDraft
 	}));
 
 	return {

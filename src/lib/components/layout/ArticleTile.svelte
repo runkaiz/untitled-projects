@@ -8,6 +8,7 @@
 	export let abstract;
 	export let createdAt;
 	export let slug;
+	export let isDraft;
 </script>
 
 <a
@@ -24,7 +25,11 @@
 			</div>
 		</div>
 		<p class="flex-shrink-0 whitespace-nowrap text-sm text-gray-500">
-			{createdAt}
+			{#if isDraft}
+				Draft
+			{:else}
+				{createdAt}
+			{/if}
 		</p>
 		<p />
 	</div>
