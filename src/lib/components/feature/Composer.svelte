@@ -1,9 +1,9 @@
 <script>
-	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
-
-	// import { prisma } from '$lib/prisma';
+	import { session } from '$app/stores';
 	import SvelteMarkdown from 'svelte-markdown';
+	import SelectionMenu from '../base/SelectionMenu.svelte';
 	import TextField from '../base/TextField.svelte';
+	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
 
 	export let note = {
 		title: '',
@@ -11,8 +11,10 @@
 		isDraft: true,
 		slug: null
 	};
-	export let author;
+
+	export let author = $session.user;
 	export let coauthors = [];
+
 	let preview = false;
 	let showMeta = false;
 </script>
@@ -84,6 +86,14 @@
 <ReactivePanel active={showMeta} title="Edit Metadata">
 	<div class="space-y-6">
 		<TextField name="slug" label="Slug" autocomplete="off" />
+		<TextField
+			name="author"
+			label="Author"
+			autocomplete="off"
+			value={author.name}
+			disabled={true}
+		/>
+		<SelectionMenu label="Coauthors" options={coauthors} />
 
 		<div class="flex items-center justify-between">
 			<div class="flex items-center">

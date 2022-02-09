@@ -21,7 +21,7 @@
 			}}
 		>
 			<span class="block truncate"
-				>{selected.length !== 0 ? selected.map((item) => item.text).join(', ') : 'Select'}</span
+				>{selected.length !== 0 ? selected.map((item) => item).join(', ') : 'None selected'}</span
 			>
 			<span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
 				<!-- Heroicon name: solid/selector -->
@@ -63,7 +63,7 @@
 						on:click={() => {
 							if (selected.includes(option)) {
 								// Remove this option from the selected list
-								selected = selected.filter((item) => item.text !== option.text);
+								selected = selected.filter((item) => item !== option);
 							} else {
 								// Add this option to the selected list
 								selected = [...selected, option];
@@ -73,7 +73,7 @@
 						<span
 							class="{selected.includes(option) ? 'font-semibold' : 'font-normal'} block truncate"
 						>
-							{option.text}
+							{option}
 						</span>
 
 						{#if selected.includes(option)}
