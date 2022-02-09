@@ -52,7 +52,7 @@
 			<button
 				type="button"
 				on:click|preventDefault={() => {
-					console.log('clicked');
+					// TODO: Implement forgot password
 				}}
 				class="font-medium text-indigo-600 hover:text-indigo-500"
 			>

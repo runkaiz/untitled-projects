@@ -1,7 +1,6 @@
 <script context="module">
 	export async function load({ session, fetch }) {
 		if (!session.user) {
-			console.log('not logged in');
 			return {
 				status: 307,
 				redirect: '/'

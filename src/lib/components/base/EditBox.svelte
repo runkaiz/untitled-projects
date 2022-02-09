@@ -24,7 +24,6 @@
 
 	function refreshUpdates() {
 		// TODO: fetch updates from server and update the state
-		console.log('refreshUpdates');
 	}
 
 	function postUpdate(event) {
@@ -49,8 +48,6 @@
 			alert('Content is required');
 			return;
 		}
-
-		console.log('Update data:', newUpdate);
 
 		// Send form data to server:
 		// - title
