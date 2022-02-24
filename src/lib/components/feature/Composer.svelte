@@ -1,22 +1,30 @@
 <script>
 	import { session } from '$app/stores';
 	import SvelteMarkdown from 'svelte-markdown';
-	import SelectionMenu from '../base/SelectionMenu.svelte';
-	import TextField from '../base/TextField.svelte';
+	import SelectionMenu from '$lib/components/base/SelectionMenu.svelte';
+	import TextField from '$lib/components/base/TextField.svelte';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
+	import { onMount } from 'svelte';
 
 	export let note = {
 		title: '',
 		content: '',
 		isDraft: true,
-		slug: null
+		slug: null,
+		author: $session.user,
+		coauthors: []
 	};
-
-	export let author = $session.user;
-	export let coauthors = [];
 
 	let preview = false;
 	let showMeta = false;
+	let allAuthors = [];
+
+	onMount(async () => {
+		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
+		allAuthors = payload;
+	});
+
+	function saveNote(event) {}
 </script>
 
 <div class="flex flex-col h-full">
@@ -46,7 +54,7 @@
 	<textarea
 		class="{preview
 			? 'hidden'
-			: ''} block w-full min-h-[80vh] border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
+			: ''} block w-full h-[75vh] border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
 		placeholder="Write something..."
 		bind:value={note.content}
 	/>
@@ -85,15 +93,15 @@
 </div>
 <ReactivePanel active={showMeta} title="Edit Metadata">
 	<div class="space-y-6">
-		<TextField name="slug" label="Slug" autocomplete="off" />
+		<TextField name="slug" label="Slug" autocomplete="off" bind:value={note.slug} />
 		<TextField
 			name="author"
 			label="Author"
 			autocomplete="off"
-			value={author.name}
+			value={note.author.name}
 			disabled={true}
 		/>
-		<SelectionMenu label="Coauthors" options={coauthors} />
+		<SelectionMenu label="Coauthors" options={allAuthors} bind:selected={note.coauthors} />
 
 		<div class="flex items-center justify-between">
 			<div class="flex items-center">
@@ -101,6 +109,9 @@
 					id="publish"
 					type="checkbox"
 					class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+					on:change={(e) => {
+						note.isDraft = !e.target.checked;
+					}}
 				/>
 				<label for="publish" class="ml-2 block text-sm text-gray-900"> Publish </label>
 			</div>
@@ -109,6 +120,7 @@
 		<div>
 			<button
 				class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				on:click={saveNote}
 			>
 				Save
 			</button>
