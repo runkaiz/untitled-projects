@@ -24,7 +24,21 @@
 		allAuthors = payload;
 	});
 
-	function saveNote(event) {}
+	async function saveNote(event) {
+		// Post the content of `note` with fetch.
+		const { status } = await fetch('/compose/save', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(note)
+		});
+
+		if (status === 200) {
+			// If successful, redirect to the note.
+			window.location.href = `/notes/${note.slug}`;
+		}
+	}
 </script>
 
 <div class="flex flex-col h-full">
