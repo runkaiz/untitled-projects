@@ -1,10 +1,10 @@
 <script>
+	import { onMount } from 'svelte';
 	import { session } from '$app/stores';
-	import SvelteMarkdown from 'svelte-markdown';
 	import SelectionMenu from '$lib/components/base/SelectionMenu.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
-	import { onMount } from 'svelte';
+	import SvelteMarkdown from 'svelte-markdown';
 
 	export let title = '';
 	export let content = '';
@@ -18,6 +18,7 @@
 	let allAuthors = [];
 
 	onMount(async () => {
+		// Load all the users who can be selected as a co-author.
 		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
 		allAuthors = payload;
 	});
@@ -38,6 +39,7 @@
 			})
 		});
 
+		// TODO: Better error/success handling.
 		if (status === 200) {
 			// If successful, redirect to the note.
 			window.location.href = `/notes/${note.slug}`;
@@ -49,6 +51,7 @@
 </script>
 
 <div class="flex flex-col h-full">
+	<!-- Go back to view all notes. -->
 	<div class="mb-2 flex-none">
 		<a
 			href="/notes"
@@ -66,6 +69,7 @@
 			Notes
 		</a>
 	</div>
+
 	<input
 		type="text"
 		class="w-full py-1 mb-1 focus:ring-0 placeholder-gray-500 font-semibold text-xl focus:outline-none"
@@ -86,6 +90,8 @@
 			</prose>
 		</div>
 	{/if}
+
+	<!-- Bottom toolbar -->
 	<div class="flex flex-row grow-0 justify-between space-x-2">
 		<button
 			type="button"
@@ -114,6 +120,7 @@
 		</div>
 	</div>
 </div>
+
 <ReactivePanel active={showMeta} title="Edit Metadata">
 	<div class="space-y-6">
 		<TextField name="slug" label="Slug" autocomplete="off" bind:value={slug} />
