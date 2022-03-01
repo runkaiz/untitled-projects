@@ -1,14 +1,5 @@
 import { prisma } from '$lib/prisma';
 
-// export let note = {
-// 	title: '',
-// 	content: '',
-// 	isDraft: true,
-// 	slug: null,
-// 	author: $session.user,
-// 	coauthors: []
-// };
-
 export async function post({ request, locals }) {
 	// Check auth.
 	if (!locals.user || !locals.user.userId) {
@@ -20,40 +11,40 @@ export async function post({ request, locals }) {
 
 	try {
 		const body = await request.json();
-		const { note } = body;
+		let { title, content, isDraft, slug, author, coauthors } = body;
 
-		// Check if note.slug is set.
-		if (!note.slug) {
+		// Check if slug is set.
+		if (!slug) {
 			// Generate a slug with note.title.
-			note.slug = note.title.toLowerCase().replace(/[^a-z0-9]/g, '-');
+			slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 		}
 
-		// Check if note.slug is unique.
-		const noteRecord = await prisma.note.findFirst({
+		// Check if slug exists in db.
+		const noteFound = await prisma.note.findFirst({
 			where: {
-				slug: note.slug
+				slug: slug
 			}
 		});
 
-		if (noteRecord) {
+		if (noteFound) {
 			// Update existing note.
-			noteRecord = await prisma.note.update({
+			noteFound = await prisma.note.update({
 				where: {
-					slug: note.slug
+					slug: slug
 				},
 				data: {
-					title: note.title,
-					content: note.content,
-					isDraft: note.isDraft,
-					slug: note.slug,
+					title: title,
+					content: content,
+					isDraft: isDraft,
+					slug: slug,
 					author: {
 						connect: {
-							userId: locals.user.userId
+							id: locals.user.userId
 						}
 					},
 					coauthors: {
-						connect: note.coauthors.map((coauthor) => ({
-							userId: coauthor.userId
+						connect: coauthors.map((coauthor) => ({
+							name: coauthor
 						}))
 					}
 				}
@@ -62,18 +53,18 @@ export async function post({ request, locals }) {
 			// Create new note.
 			noteRecord = await prisma.note.create({
 				data: {
-					title: note.title,
-					content: note.content,
-					isDraft: note.isDraft,
-					slug: note.slug,
+					title: title,
+					content: content,
+					isDraft: isDraft,
+					slug: slug,
 					author: {
 						connect: {
-							userId: locals.user.userId
+							id: locals.user.userId
 						}
 					},
 					coauthors: {
-						connect: note.coauthors.map((coauthor) => ({
-							userId: coauthor.userId
+						connect: coauthors.map((coauthor) => ({
+							name: coauthor
 						}))
 					}
 				}
