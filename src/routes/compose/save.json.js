@@ -51,7 +51,7 @@ export async function post({ request, locals }) {
 			});
 		} else {
 			// Create new note.
-			noteRecord = await prisma.note.create({
+			noteFound = await prisma.note.create({
 				data: {
 					title: title,
 					content: content,
@@ -75,7 +75,7 @@ export async function post({ request, locals }) {
 			status: 200,
 			body: {
 				message: 'Note saved.',
-				note: noteRecord
+				note: noteFound
 			}
 		};
 	} catch (error) {
