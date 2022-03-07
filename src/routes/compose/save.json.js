@@ -20,7 +20,7 @@ export async function post({ request, locals }) {
 		}
 
 		// Check if slug exists in db.
-		const noteFound = await prisma.note.findFirst({
+		let noteFound = await prisma.note.findFirst({
 			where: {
 				slug: slug
 			}
