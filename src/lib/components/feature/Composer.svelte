@@ -42,7 +42,7 @@
 		// TODO: Better error/success handling.
 		if (status === 200) {
 			// If successful, redirect to the note.
-			window.location.href = `/notes/${note.slug}`;
+			window.location.href = `/notes/${slug}`;
 		} else {
 			// If not, show an error.
 			console.error('Error saving note.');
