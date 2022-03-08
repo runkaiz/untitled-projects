@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
 	import { session } from '$app/stores';
+	import { goto } from '$app/navigation';
 	import SelectionMenu from '$lib/components/base/SelectionMenu.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
@@ -42,10 +43,10 @@
 		// TODO: Better error/success handling.
 		if (status === 200) {
 			// If successful, redirect to the note.
-			window.location.href = `/notes/${slug}`;
+			goto(`/notes/${slug}`);
 		} else {
 			// If not, show an error.
-			console.error('Error saving note.');
+			alert('Error saving note.');
 		}
 	}
 </script>
