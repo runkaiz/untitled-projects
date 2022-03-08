@@ -22,6 +22,7 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
+	import { session } from '$app/stores';
 	export let notes;
 </script>
 
@@ -30,6 +31,8 @@
 </MainPanel>
 <SidePanel>
 	{#each notes as note}
-		<ArticleTile {...note} />
+		{#if !note.isDraft || $session.user.isAdmin}
+			<ArticleTile {...note} />
+		{/if}
 	{/each}
 </SidePanel>

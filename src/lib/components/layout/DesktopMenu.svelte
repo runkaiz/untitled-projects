@@ -58,7 +58,7 @@
 					</button>
 				{:else}
 					<div class="flex flex-row justify-between grow text-sm text-gray-500">
-						<a href="/composer">New</a>
+						<a href="/compose/new">New</a>
 						<a href="/settings"><i class="ri-user-settings-line" /></a>
 					</div>
 				{/if}

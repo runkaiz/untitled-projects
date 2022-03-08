@@ -1,4 +1,5 @@
 import { prisma } from '$lib/prisma';
+import { generateToken } from '$lib/utils/token';
 
 export async function get({ locals }) {
 	const result = await findSelf(locals);
@@ -48,8 +49,15 @@ export async function put({ request, locals }) {
 		}
 	});
 
+	const token = generateToken(updatedUser);
+
 	return {
 		status: 200,
+		headers: {
+			'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
+				Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
+			).toUTCString()}; Path=/`
+		},
 		body: {
 			userId: updatedUser.id,
 			name: updatedUser.name,

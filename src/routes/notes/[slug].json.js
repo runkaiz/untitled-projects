@@ -1,6 +1,6 @@
 import { prisma } from '$lib/prisma';
 
-export async function get(params) {
+export async function get({ params }) {
 	const { slug } = params;
 
 	try {
