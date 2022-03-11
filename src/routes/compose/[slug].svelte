@@ -39,5 +39,6 @@
 		isDraft={note.isDraft}
 		slug={note.slug}
 		author={note.author}
+		coauthors={note.coauthors}
 	/>
 </MainPanel>

@@ -5,6 +5,10 @@
 				status: 307,
 				redirect: '/'
 			};
+		} else {
+			return {
+				status: 200
+			};
 		}
 	}
 </script>

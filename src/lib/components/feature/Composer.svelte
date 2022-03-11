@@ -17,11 +17,15 @@
 	let preview = false;
 	let showMeta = false;
 	let allAuthors = [];
+	let selectedCoauthors = [];
 
 	onMount(async () => {
 		// Load all the users who can be selected as a co-author.
 		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
 		allAuthors = payload;
+		selectedCoauthors = coauthors.map((coauthor) => {
+			return coauthor.name;
+		});
 	});
 
 	async function saveNote(event) {
@@ -132,7 +136,7 @@
 			value={author.name}
 			disabled={true}
 		/>
-		<SelectionMenu label="Coauthors" options={allAuthors} bind:selected={coauthors} />
+		<SelectionMenu label="Coauthors" options={allAuthors} bind:selected={selectedCoauthors} />
 
 		<div class="flex items-center justify-between">
 			<div class="flex items-center">

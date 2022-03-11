@@ -23,7 +23,7 @@
 		"postcss": "^8.4.5",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.6.0",
-		"prisma": "^3.8.1",
+		"prisma": "^3.10.0",
 		"stylelint-config-recommended": "^6.0.0",
 		"svelte": "^3.46.2",
 		"svelte-keydown": "^0.4.1",

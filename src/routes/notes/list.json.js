@@ -22,6 +22,7 @@ export async function get() {
 		title: note.title,
 		slug: note.slug,
 		author: note.author.name,
+		coauthors: note.coauthors,
 		createdAt: note.createdAt.toLocaleDateString('en-US', {
 			month: 'long',
 			day: 'numeric',
