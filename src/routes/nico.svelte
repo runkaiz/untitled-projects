@@ -27,7 +27,7 @@ import ProjectTable from '$lib/components/content/ProjectTable.svelte';
 		<br />
 		<ProjectTable title="Other Projects" subtitle="Relevent programs that I had been working that may not be as recent. Those that are marked as experiments are like completed little proofs of concepts. Practically they are not useful to anybody, but I have always found these snippets of knowledge handy as I tend to forget things." buttonLink="https://github.com/runkaiz" buttonText="GitHub">
 			<Project name="The Bement App" platform="iOS" language="Swift" status="Completed" link="https://github.com/bement-dev/Bement-app" />
-			<Project name="The Bement App" platform="iOS" language="Swift" status="Experiment" link="https://github.com/runkaiz/RunkaiKit" />
+			<Project name="RunkaiKit" platform="iOS" language="Swift" status="Experiment" link="https://github.com/runkaiz/RunkaiKit" />
 			<Project name="Pro-Ject" platform="Web" language="HTML, CSS, JS" status="Experiment" link="https://github.com/runkaiz/pro-ject" />
 			<Project name="Personal Website" platform="Web" language="HTML, CSS, JS" status="Decommissioned" link="https://github.com/runkaiz/runkai-zhang" />
 			<Project name="Think" platform="iOS" language="Swift" status="Experiment" link="https://github.com/yych42/think" />
