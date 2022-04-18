@@ -13,7 +13,7 @@
 		Check out my <HyperLink link='https://runkaizhang.xyz/'>profile</HyperLink> for details that's updated more frequently.
 		<br />
 		<br />
-		Aside from 'traditional' computer science I have also takened a course with <HyperLink link="https://www.inspiritai.com/">Inspirit AI's A.I. Scholars program</HyperLink>.
+		Aside from 'traditional' computer science I have also taken a course with <HyperLink link="https://www.inspiritai.com/">Inspirit AI's A.I. Scholars program</HyperLink>.
 	</p> 	
 	<div class="flex flex-row">
 		<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
