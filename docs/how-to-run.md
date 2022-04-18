@@ -16,7 +16,7 @@ Run `pscale auth login` and switch to the team where the database lives: `pscale
 DATABASE_URL="mysql://root@127.0.0.1:3309/untitled-db"
 SHADOW_DATABASE_URL="mysql://root@127.0.0.1:3310/untitled-db"
 
-# Run `npx prisma generate` everytime you update this file.
+# Run `npx prisma generate` every time you update this file.
 ```
 
 4. Run `npx prisma generate`.

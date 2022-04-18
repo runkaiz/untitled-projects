@@ -1,6 +1,7 @@
 <script>
+	import HyperLink from '$lib/components/content/HyperLink.svelte';
 	import Project from '$lib/components/content/items/Project.svelte';
-import ProjectTable from '$lib/components/content/ProjectTable.svelte';
+	import ProjectTable from '$lib/components/content/ProjectTable.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 </script>
 
@@ -9,8 +10,11 @@ import ProjectTable from '$lib/components/content/ProjectTable.svelte';
 	<p class="pt-2 text-gray-700">
 		I am an high school student pursuing my interests in computer science.
 		<br />
-		Check out my <a class="text-indigo-600 hover:text-indigo-900" href="https://runkaizhang.xyz/">profile</a> for details that's updated more frequently.
-	</p>
+		Check out my <HyperLink link='https://runkaizhang.xyz/'>profile</HyperLink> for details that's updated more frequently.
+		<br />
+		<br />
+		Aside from 'traditional' computer science I have also takened a course with <HyperLink link="https://www.inspiritai.com/">Inspirit AI's A.I. Scholars program</HyperLink>.
+	</p> 	
 	<div class="flex flex-row">
 		<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
 			<h2 class="font-semibold text-lg">A work in progress.</h2>
