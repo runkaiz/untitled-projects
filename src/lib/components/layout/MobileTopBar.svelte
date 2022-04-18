@@ -7,7 +7,7 @@
 	<div
 		class="flex fixed w-full top-0 items-center justify-between bg-white/90 backdrop-blur border-b border-gray-200 pr-4"
 	>
-		<div>
+		<!-- <div>
 			<a href=".." class="h-11 w-11 inline-flex items-center justify-center">
 				<span class="sr-only">Open sidebar</span>
 				<svg
@@ -20,7 +20,7 @@
 					/></svg
 				>
 			</a>
-		</div>
+		</div> -->
 		<div>
 			<button
 				type="button"
