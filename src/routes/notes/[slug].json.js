@@ -7,11 +7,7 @@ export async function get({ params }) {
 		const note = await prisma.note.findFirst({
 			where: { slug },
 			include: {
-				author: {
-					select: {
-						name: true
-					}
-				},
+				author: true,
 				coauthors: true
 			}
 		});

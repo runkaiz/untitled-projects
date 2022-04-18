@@ -21,7 +21,9 @@
 			}}
 		>
 			<span class="block truncate"
-				>{selected.length !== 0 ? selected.map((item) => item.name).join(', ') : 'None selected'}</span
+				>{selected.length !== 0
+					? selected.map((item) => item.name).join(', ')
+					: 'None selected'}</span
 			>
 			<span class="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
 				<!-- Heroicon name: solid/selector -->
@@ -61,9 +63,9 @@
 						class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-white"
 						role="option"
 						on:click={() => {
-							if (selected.some(item => item.id === option.id)) {
+							if (selected.some((item) => item.id === option.id)) {
 								// Remove this option from the selected list
-								selected = selected.filter((item) => selected.some(it => it.id !== item.id));
+								selected = selected.filter((item) => selected.some((it) => it.id !== item.id));
 							} else {
 								// Add this option to the selected list
 								selected = [...selected, option];
@@ -71,12 +73,14 @@
 						}}
 					>
 						<span
-							class="{selected.some(item => item.id === option.id) ? 'font-semibold' : 'font-normal'} block truncate"
+							class="{selected.some((item) => item.id === option.id)
+								? 'font-semibold'
+								: 'font-normal'} block truncate"
 						>
 							{option.name}
 						</span>
 
-						{#if selected.some(item => item.id === option.id)}
+						{#if selected.some((item) => item.id === option.id)}
 							<span
 								class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4 hover:text-white"
 							>

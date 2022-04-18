@@ -1,5 +1,5 @@
 <script context="module">
-	export async function load({ session, fetch }) {
+	export async function load({ session }) {
 		if (!session.user) {
 			return {
 				status: 307,

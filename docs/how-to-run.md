@@ -23,6 +23,6 @@ SHADOW_DATABASE_URL="mysql://root@127.0.0.1:3310/untitled-db"
 
 ## To run
 
-1. Run `pscale connect untitled-db main --port 3309` to establish a connection to the db.
+1. Run `pscale connect untitled-db main --port 3309` to establish a connection to the db. An easier alternative of this would be `npm run database`.
 
 2. Run `npm run dev`.

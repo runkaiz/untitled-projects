@@ -1,5 +1,15 @@
 {
-    "cSpell.words": [
-        "upsert"
-    ]
+	"cSpell.words": [
+		"devhost",
+		"devopen",
+		"keydown",
+		"pnpm",
+		"postbuild",
+		"pscale",
+		"stylelint",
+		"sveltejs",
+		"tailwindcss",
+		"upsert",
+		"vercel"
+	]
 }
