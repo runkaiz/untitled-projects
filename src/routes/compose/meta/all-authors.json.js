@@ -20,7 +20,7 @@ export async function get({ locals }) {
 	let coauthors = [];
 
 	otherAdmins.forEach((admin) => {
-		coauthors = [...coauthors, admin.name];
+		coauthors = [...coauthors, admin];
 	});
 
 	return {

@@ -12,11 +12,7 @@ export async function get({ params }) {
 						name: true
 					}
 				},
-				coauthors: {
-					select: {
-						name: true
-					}
-				}
+				coauthors: true
 			}
 		});
 

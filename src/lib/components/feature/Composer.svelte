@@ -23,12 +23,12 @@
 		// Load all the users who can be selected as a co-author.
 		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
 		allAuthors = payload;
-		selectedCoauthors = coauthors.map((coauthor) => {
-			return coauthor.name;
-		});
+		selectedCoauthors = coauthors;
 	});
 
-	async function saveNote(event) {
+	async function saveNote() {
+		console.log(selectedCoauthors);
+		coauthors = selectedCoauthors;
 		const { status } = await fetch('/compose/save.json', {
 			method: 'POST',
 			headers: {
@@ -128,11 +128,11 @@
 
 <ReactivePanel active={showMeta} title="Edit Metadata">
 	<div class="space-y-6">
-		<TextField name="slug" label="Slug" autocomplete="off" bind:value={slug} />
+		<TextField name="slug" label="Slug" autocomplete={false} bind:value={slug} />
 		<TextField
 			name="author"
 			label="Author"
-			autocomplete="off"
+			autocomplete={false}
 			value={author.name}
 			disabled={true}
 		/>

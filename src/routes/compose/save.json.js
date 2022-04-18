@@ -19,63 +19,62 @@ export async function post({ request, locals }) {
 			slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 		}
 
-		// Check if slug exists in db.
-		let noteFound = await prisma.note.findFirst({
+		let original = await prisma.note.findFirst({
 			where: {
 				slug: slug
+			},
+			select: {
+				coauthors: true
 			}
 		});
 
-		if (noteFound) {
-			// Update existing note.
-			noteFound = await prisma.note.update({
-				where: {
-					slug: slug
+		// Upsert automatically handles creation and update depending on the existence of the note
+		let noteToUpdate = await prisma.note.upsert({
+			where: {
+				slug: slug
+			},
+			update: {
+				title: title,
+				content: content,
+				isDraft: isDraft,
+				slug: slug,
+				author: {
+					connect: {
+						id: locals.user.userId
+					}
 				},
-				data: {
-					title: title,
-					content: content,
-					isDraft: isDraft,
-					slug: slug,
-					author: {
-						connect: {
-							id: locals.user.userId
-						}
-					},
-					coauthors: {
-						connect: coauthors.map((coauthor) => ({
-							name: coauthor
-						}))
-					}
+				coauthors: {
+					disconnect: original.coauthors.map((coauthor) => ({
+						id: coauthor.id
+					})),
+					connect: coauthors.map((coauthor) => ({
+						id: coauthor.id
+					}))
 				}
-			});
-		} else {
-			// Create new note.
-			noteFound = await prisma.note.create({
-				data: {
-					title: title,
-					content: content,
-					isDraft: isDraft,
-					slug: slug,
-					author: {
-						connect: {
-							id: locals.user.userId
-						}
-					},
-					coauthors: {
-						connect: coauthors.map((coauthor) => ({
-							name: coauthor
-						}))
+			},
+			create: {
+				title: title,
+				content: content,
+				isDraft: isDraft,
+				slug: slug,
+				author: {
+					connect: {
+						id: locals.user.userId
 					}
+				},
+				coauthors: {
+					connect: coauthors.map((coauthor) => ({
+						id: coauthor.id
+					}))
 				}
-			});
-		}
+			}
+		});
 
 		return {
 			status: 200,
 			body: {
 				message: 'Note saved.',
-				note: noteFound
+				note: noteToUpdate
 			}
 		};
 	} catch (error) {

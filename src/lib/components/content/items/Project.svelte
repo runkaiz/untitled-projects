@@ -1,4 +1,6 @@
 <script>
+    import HyperLink from "../HyperLink.svelte";
+
     export let name;
     export let platform;
     export let language;
@@ -12,6 +14,6 @@
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{language}</td>
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{status}</td>
     <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-        <a href={link} class="text-indigo-600 hover:text-indigo-900">Repository<span class="sr-only">Link to project</span></a>
+        <HyperLink link={link}>Repository<span class="sr-only">Link to project</span></HyperLink>
     </td>
 </tr>
