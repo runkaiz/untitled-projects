@@ -31,8 +31,14 @@
 </MainPanel>
 <SidePanel>
 	{#each notes as note}
-		{#if !note.isDraft || $session.user.isAdmin}
-			<ArticleTile {...note} />
+		{#if $session.user !== null}
+			{#if $session.user.isAdmin}
+				<ArticleTile {...note} />
+			{/if}
+		{:else}
+			{#if !note.isDraft}
+				<ArticleTile {...note} />
+			{/if}
 		{/if}
 	{/each}
 </SidePanel>
