@@ -46,5 +46,15 @@ export const menuItems = [
 				href: '/yao'
 			}
 		]
-	}
+	},
+	{
+		name: 'Misc',
+		items: [
+			{
+				iconClass: 'ri-bar-chart-2-line',
+				label: 'Status Report',
+				href: 'https://status.untitled.codes'
+			}
+		]
+	},
 ];
