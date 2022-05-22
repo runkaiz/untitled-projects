@@ -14,11 +14,6 @@ export const menuItems = [
 				iconClass: 'ri-booklet-line',
 				label: 'Notes',
 				href: '/notes'
-			},
-			{
-				iconClass: 'ri-image-line',
-				label: 'Photos',
-				href: '/photos'
 			}
 		]
 	},
