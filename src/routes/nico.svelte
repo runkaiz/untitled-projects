@@ -3,6 +3,11 @@
 	import Project from '$lib/components/content/items/Project.svelte';
 	import ProjectTable from '$lib/components/content/ProjectTable.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
+
+	let time = new Date();
+	$: date = time.getDate();
+	$: month = time.getMonth();
+	$: year = time.getFullYear();
 </script>
 
 <MainPanel>
@@ -11,7 +16,7 @@
 			<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
 				<h2 class="font-semibold text-lg">Printing or exporting to PDF?</h2>
 				<p class="pt-2 text-gray-700">
-					If you can see this, then it means you are viewing a printed or PDF version of my personal page (which means it might be outdated). Please visit https://untitled.codes/nico for the latest information, sorry for you inconvenience.
+					If you can see this, then it means you are viewing a printed or PDF version of my personal page (which means it might be outdated). Please visit https://untitled.codes/nico for the latest information, sorry for you inconvenience. Version exported {month + 1}/{date}/{year}.
 				</p>
 			</div>
 		</div>
