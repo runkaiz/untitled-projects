@@ -6,8 +6,20 @@
 </script>
 
 <MainPanel>
+	<div class="hidden print:block">
+		<div class="flex flex-row">
+			<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
+				<h2 class="font-semibold text-lg">Printing or exporting to PDF?</h2>
+				<p class="pt-2 text-gray-700">
+					If you can see this, then it means you are viewing a printed or PDF version of my personal page (which means it might be outdated). Please visit https://untitled.codes/nico for the latest information, sorry for you inconvenience.
+				</p>
+			</div>
+		</div>
+	</div>
 	<h1 class="font-semibold text-2xl">Runkai (Nico) Zhang</h1>
 	<p class="pt-2 text-gray-700">
+		<a href="mailto:runkai@untitled.codes">runkai@untitled.codes</a>
+		<br />
 		I am an high school student pursuing my interests in computer science.
 		<br />
 		Check out my <HyperLink link="https://runkaizhang.xyz/">profile</HyperLink> for details that's updated
@@ -27,6 +39,21 @@
 			</p>
 		</div>
 	</div>
+	<div class="sm:flex sm:items-center">
+		<div class="sm:flex-auto">
+			<h1 class="text-xl font-semibold text-gray-900">High School</h1>
+		</div>
+		<h2>Northfield Mount Hermon '23</h2>
+	</div>
+	<div class="sm:flex sm:items-center">
+		<div class="sm:flex-auto">
+			<h1 class="text-xl font-semibold text-gray-900">Middle School</h1>
+		</div>
+		<h2>The Bement School '20</h2>
+	</div>
+	<br />
+	<p>I also have taken the responsibility of a couple of leadership positions, such as resident leader at NMH and leader of the robotics club.</p>
+	<br />
 	<div>
 		<ProjectTable
 			title="Ongoing Projects"

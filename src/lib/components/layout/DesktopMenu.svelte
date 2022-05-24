@@ -4,7 +4,7 @@
 	export let shouldShowLogin;
 </script>
 
-<div class="hidden lg:flex lg:flex-shrink-0 lg:fixed lg:inset-y-0 z-50">
+<div class="hidden lg:flex lg:flex-shrink-0 lg:fixed lg:inset-y-0 z-50 print:hidden">
 	<div class="flex flex-col w-64">
 		<!-- Sidebar component, swap this element with another sidebar if you like -->
 		<div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">

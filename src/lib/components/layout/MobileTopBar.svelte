@@ -3,7 +3,7 @@
 </script>
 
 <!-- Top nav bar for toggling navigation on mobile devices. -->
-<div class="lg:hidden z-40">
+<div class="lg:hidden z-40 print:hidden">
 	<div
 		class="flex fixed w-full top-0 items-center justify-between bg-white/90 backdrop-blur border-b border-gray-200 pr-4"
 	>

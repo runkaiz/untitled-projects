@@ -9,7 +9,7 @@
 {#if active}
 	<Keydown on:Escape={() => (active = false)} />
 	<div
-		class="fixed z-50 inset-0 overflow-hidden"
+		class="fixed z-50 inset-0 overflow-hidden print:flex"
 		aria-labelledby="slide-over-title"
 		role="dialog"
 		aria-modal="true"
