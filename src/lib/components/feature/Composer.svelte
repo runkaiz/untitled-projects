@@ -78,7 +78,7 @@
 	}
 </script>
 
-<div class="flex flex-col h-full">
+<div class="flex flex-col h-screen">
 	<!-- Go back to view all notes. -->
 	<div class="mb-2 flex-none">
 		<a
@@ -98,7 +98,7 @@
 		</a>
 	</div>
 
-	<form action="#" class="relative">
+	<form class="relative">
 		<div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
 		  <label for="title" class="sr-only">Title</label>
 		  <input type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title" bind:value={title} />
@@ -110,7 +110,7 @@
 				</prose>
 			</div>
 			{:else}
-			<textarea rows="2" name="description" id="description" class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Write something..." bind:value={content} />
+			<textarea rows="35" name="description" id="description" class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Write something..." bind:value={content} />
 		{/if}
 	  
 		  <!-- Spacer element to match the height of the toolbar -->
