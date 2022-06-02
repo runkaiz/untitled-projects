@@ -98,62 +98,65 @@
 		</a>
 	</div>
 
-	<input
-		type="text"
-		class="w-full py-1 mb-1 focus:ring-0 placeholder-gray-500 font-semibold text-xl focus:outline-none"
-		placeholder="Title"
-		bind:value={title}
-	/>
-	<textarea
-		class="{preview
-			? 'hidden'
-			: ''} block w-full h-[75vh] border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
-		placeholder="Write something..."
-		bind:value={content}
-	/>
-	{#if preview}
-		<div class="w-full min-h-[80vh]">
-			<prose class="prose">
-				<SvelteMarkdown source={content} />
-			</prose>
+	<form action="#" class="relative">
+		<div class="border border-gray-300 rounded-lg shadow-sm overflow-hidden focus-within:border-indigo-500 focus-within:ring-1 focus-within:ring-indigo-500">
+		  <label for="title" class="sr-only">Title</label>
+		  <input type="text" name="title" id="title" class="block w-full border-0 pt-2.5 text-lg font-medium placeholder-gray-500 focus:ring-0" placeholder="Title" bind:value={title} />
+		  <label for="description" class="sr-only">Content</label>
+		  {#if preview}
+			<div class="m-3">
+				<prose class="prose">
+					<SvelteMarkdown source={content} />
+				</prose>
+			</div>
+			{:else}
+			<textarea rows="2" name="description" id="description" class="block w-full border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 sm:text-sm" placeholder="Write something..." bind:value={content} />
+		{/if}
+	  
+		  <!-- Spacer element to match the height of the toolbar -->
+		  <div aria-hidden="true">
+			<div class="py-2">
+			  <div class="h-9"></div>
+			</div>
+			<div class="h-px"></div>
+			<div class="py-2">
+			  <div class="py-px">
+				<div class="h-9"></div>
+			  </div>
+			</div>
+		  </div>
 		</div>
-	{/if}
-
-	<!-- Bottom toolbar -->
-	<div class="flex flex-row grow-0 justify-between space-x-2">
-		<button
-			type="button"
-			class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 {preview
-				? 'bg-gray-50'
-				: ''} focus:outline-none"
-			on:click={() => {
-				preview = !preview;
-			}}>Preview</button
-		>
-		<div>
-			<button
-				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-red-700 bg-white hover:bg-gray-50 focus:outline-none"
-				on:click={() => {
-					isDeleting = !isDeleting;
-				}}>Delete</button
-			>
-			<button
-				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
-				on:click={() => {
-					showMeta = !showMeta;
-				}}>Meta</button
-			>
-			<button
-				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-				on:click={saveNote}
-			>
-				Save
-			</button>
+	  
+		<div class="absolute bottom-0 inset-x-px">
+			<div class="border-t border-gray-200 px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
+				<div class="flex">
+					<button type="button" class="-ml-2 -my-2 rounded-full px-3 py-2 inline-flex items-center text-left text-gray-400 group {preview ? 'bg-gray-50' : ''}" on:click={() => {
+						preview = !preview;
+					}}>
+						<svg xmlns="http://www.w3.org/2000/svg" class="-ml-1 h-5 w-5 mr-2 group-hover:text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width={2} aria-hidden="true">
+							<path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+					  	</svg>
+						<span class="text-sm text-gray-500 group-hover:text-gray-600">Preview</span>
+					</button>
+				</div>
+				<div class="px-2 py-2 flex justify-between items-center space-x-3 sm:px-3">
+					<div class="flex-shrink-0">
+						<button type="button" on:click={() => {
+							isDeleting = !isDeleting;
+						}} class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">Delete</button>
+					</div>
+					<div class="flex-shrink-0">
+						<button type="button" on:click={() => {
+							showMeta = !showMeta;
+						}} class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-gray-600 hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500">Meta</button>
+					</div>
+					<div class="flex-shrink-0">
+						<button type="button" on:click={saveNote} class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+					</div>
+				</div>
+			</div>
 		</div>
-	</div>
+	</form>
 </div>
 
 {#if isDeleting}
@@ -233,7 +236,7 @@
 					<button
 						type="button"
 						class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-						on:click={deleteNote}>Deactivate</button
+						on:click={deleteNote}>Delete</button
 					>
 					<button
 						type="button"

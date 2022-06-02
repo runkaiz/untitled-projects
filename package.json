@@ -12,7 +12,8 @@
 		"lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
 		"format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. .",
 		"vercel-postbuild": "cp node_modules/@prisma/engines/*query* .vercel_build_output/functions/node/render/;cp prisma/schema.prisma .vercel_build_output/functions/node/render/",
-		"vercel-build": "prisma generate && pnpm build && pnpm vercel-postbuild"
+		"vercel-build": "prisma generate && pnpm build && pnpm vercel-postbuild",
+		"studio": "npx prisma studio"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^1.0.0-next.15",
@@ -25,7 +26,7 @@
 		"postcss": "^8.4.5",
 		"prettier": "^2.5.1",
 		"prettier-plugin-svelte": "^2.6.0",
-		"prisma": "^3.10.0",
+		"prisma": "^3.14.0",
 		"stylelint-config-recommended": "^7.0.0",
 		"svelte": "^3.46.2",
 		"svelte-keydown": "^0.5.0",
@@ -33,7 +34,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@prisma/client": "^3.8.1",
+		"@prisma/client": "^3.14.0",
+		"@tailwindcss/forms": "^0.5.2",
 		"@tailwindcss/line-clamp": "^0.3.1",
 		"aws-sdk": "^2.1063.0",
 		"bcryptjs": "^2.4.3",
