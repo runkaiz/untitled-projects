@@ -1,5 +1,5 @@
 <script>
-	import { onMount } from 'svelte';
+	import { beforeUpdate, afterUpdate } from 'svelte';
 
 	export let shouldShowOffCanvasMenu;
 	export let shouldShowOffCanvasNoteMenu;
@@ -8,7 +8,15 @@
 	let isANoteOpen = false;
 	let innerWidth = 0;
 
-    onMount(() => {
+    beforeUpdate(() => {
+		url = new URL(window.location.href)
+
+		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
+			isANoteOpen = true;
+		}
+	});
+
+	afterUpdate(() => {
 		url = new URL(window.location.href)
 
 		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
