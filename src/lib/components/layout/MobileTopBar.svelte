@@ -9,6 +9,7 @@
 	let innerWidth = 0;
 
     beforeUpdate(() => {
+		isANoteOpen = false;
 		url = new URL(window.location.href)
 
 		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
@@ -17,6 +18,7 @@
 	});
 
 	afterUpdate(() => {
+		isANoteOpen = false;
 		url = new URL(window.location.href)
 
 		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
