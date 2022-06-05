@@ -24,21 +24,65 @@
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
 	import { session } from '$app/stores';
 	export let notes;
+
+	import { beforeUpdate, afterUpdate } from 'svelte';
+
+    let url;
+	let showSidePanel = false;
+	let innerWidth = 0;
+
+	beforeUpdate(() => {
+		showSidePanel = false;
+		url = new URL(window.location.href)
+
+		if (url.pathname === "/notes") {
+			showSidePanel = true;
+		}
+	});
+
+    afterUpdate(() => {
+		showSidePanel = false;
+		url = new URL(window.location.href)
+
+		if (url.pathname === "/notes") {
+			showSidePanel = true;
+		}
+	});
 </script>
 
+<svelte:window bind:innerWidth={innerWidth} />
+
 <MainPanel>
-	<slot />
+	<div class="mt-6 lg:mt-0">
+		<slot />
+	</div>
 </MainPanel>
-<SidePanel>
-	{#each notes as note}
-		{#if $session.user !== null}
-			{#if $session.user.isAdmin}
-				<ArticleTile {...note} />
-			{/if}
-		{:else}
-			{#if !note.isDraft}
-				<ArticleTile {...note} />
-			{/if}
-		{/if}
-	{/each}
-</SidePanel>
+{#if showSidePanel || innerWidth > 640}
+	{#if innerWidth < 1024}
+		<div class="mt-11 flex">
+			<SidePanel>
+				{#each notes as note}
+					{#if $session.user !== null && $session.user.isAdmin}
+						<ArticleTile {...note} />
+					{:else}
+						{#if !note.isDraft}
+							<ArticleTile {...note} />
+						{/if}
+					{/if}
+				{/each}
+			</SidePanel>
+		</div>
+	{:else}
+		<SidePanel>
+			{#each notes as note}
+				{#if $session.user !== null && $session.user.isAdmin}
+					<ArticleTile {...note} />
+				{:else}
+					{#if !note.isDraft}
+						<ArticleTile {...note} />
+					{/if}
+				{/if}
+			{/each}
+		</SidePanel>
+	{/if}
+{/if}

@@ -4,10 +4,12 @@
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
 	import LoginForm from '$lib/components/feature/auth/LoginForm.svelte';
 	import OffCanvasMenu from '$lib/components/layout/OffCanvasMenu.svelte';
+	import OffCanvasNoteMenu from '$lib/components/layout/OffCanvasNoteMenu.svelte';
 	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
 	import { session } from '$app/stores';
 	let showLogin = false;
 	let showOffCanvasMenu = false;
+	let showOffCanvasNoteMenu = false;
 
 	function updateUser(event) {
 		showLogin = false;
@@ -31,12 +33,13 @@
 		><LoginForm on:success={updateUser} /></ReactivePanel
 	>
 	<OffCanvasMenu bind:show={showOffCanvasMenu} bind:shouldShowLogin={showLogin} />
+	<OffCanvasNoteMenu bind:show={showOffCanvasNoteMenu} />
 	<DesktopMenu bind:shouldShowLogin={showLogin} />
 	<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 		<div class="flex-1 relative z-0 flex overflow-hidden">
 			<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 				<div class="flex-1 relative z-0 flex overflow-hidden">
-					<MobileTopBar bind:shouldShowOffCanvasMenu={showOffCanvasMenu} />
+					<MobileTopBar bind:shouldShowOffCanvasMenu={showOffCanvasMenu} bind:shouldShowOffCanvasNoteMenu={showOffCanvasNoteMenu} />
 					<!-- To preserve the space for DesktopMenu -->
 					<div class="lg:flex lg:flex-col lg:w-64 lg:order-first print:hidden" />
 					<slot />
