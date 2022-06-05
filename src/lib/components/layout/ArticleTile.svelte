@@ -20,7 +20,7 @@
 	<div class="flex justify-between space-x-3">
 		<div class="min-w-0 flex-1">
 			<div class="block focus:outline-none">
-				<p class="text-sm font-medium text-gray-900 truncate">{title}</p>
+				<p class="text-sm font-medium text-gray-900 whitespace-pre-line lg:truncate">{title}</p>
 				<p class="text-sm text-gray-500 truncate">{author}</p>
 			</div>
 		</div>
