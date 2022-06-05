@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <script context="module">
 	export async function load({ fetch }) {
 		const url = `/notes/list.json`;
@@ -88,3 +89,5 @@
 	</div>
  </div>
   
+=======
+>>>>>>> f9bf471 (Empty note index.)
