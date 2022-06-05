@@ -1,30 +1,9 @@
 <script>
-	import { beforeUpdate, afterUpdate } from 'svelte';
-
 	export let shouldShowOffCanvasMenu;
 	export let shouldShowOffCanvasNoteMenu;
 
-	let url;
-	let isANoteOpen = false;
+	export let isANoteOpen = false;
 	let innerWidth = 0;
-
-    beforeUpdate(() => {
-		isANoteOpen = false;
-		url = new URL(window.location.href)
-
-		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
-			isANoteOpen = true;
-		}
-	});
-
-	afterUpdate(() => {
-		isANoteOpen = false;
-		url = new URL(window.location.href)
-
-		if (url.pathname !== "/notes" && url.pathname.lastIndexOf("/notes") === 0) {
-			isANoteOpen = true;
-		}
-	});
 </script>
 
 <svelte:window bind:innerWidth={innerWidth} />
