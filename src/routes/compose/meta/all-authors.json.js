@@ -10,10 +10,7 @@ export async function get({ locals }) {
 
 	const otherAdmins = await prisma.user.findMany({
 		where: {
-			role: 'ADMIN',
-			NOT: {
-				name: locals.user.name
-			}
+			role: 'ADMIN'
 		}
 	});
 
