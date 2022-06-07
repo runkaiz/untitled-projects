@@ -17,6 +17,7 @@
 	let preview = false;
 	let showMeta = false;
 	let allAuthors = [];
+	let coauthorOptions = [];
 	let selectedCoauthors = [];
 	let isNew = true;
 	let isDeleting = false;
@@ -30,6 +31,7 @@
 		// Load all the users who can be selected as a co-author.
 		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
 		allAuthors = payload;
+		coauthorOptions = allAuthors.filter((item) => item.name !== author.name);
 		selectedCoauthors = coauthors;
 	});
 
@@ -360,7 +362,7 @@
 			value={author.name}
 			disabled={true}
 		/>
-		<SelectionMenu label="Coauthors" options={allAuthors} bind:selected={selectedCoauthors} />
+		<SelectionMenu label="Coauthors" options={coauthorOptions} bind:selected={selectedCoauthors} />
 
 		<div class="flex items-center justify-between">
 			<div class="flex items-center">
