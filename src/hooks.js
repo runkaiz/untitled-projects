@@ -4,7 +4,6 @@ import { verifyToken } from '$lib/utils/token';
 // I am really debating whether or not to use hooks for auth.
 //  Pro: Stores the user's information in httpOnly cookies; xss can't steal user's name easily.
 //  Con: I hate to add this performance hit to every request.
-// TODO: Should we use localStorage instead?
 
 export async function handle({ event, resolve }) {
 	const cookies = cookie.parse(event.request.headers.get('cookie') || '');

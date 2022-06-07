@@ -1,4 +1,3 @@
-<!-- TODO: Change this into ListPanel -->
 <svelte:options immutable={true} />
 
 <script>
