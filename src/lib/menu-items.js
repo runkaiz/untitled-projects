@@ -51,5 +51,5 @@ export const menuItems = [
 				href: 'https://status.untitled.codes'
 			}
 		]
-	},
+	}
 ];

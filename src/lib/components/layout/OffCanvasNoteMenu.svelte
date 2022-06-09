@@ -1,15 +1,15 @@
 <script>
-    import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
-    import SidePanel from '$lib/components/layout/SidePanel.svelte';
-    import classes from 'svelte-transition-classes';
-    import { session } from '$app/stores';
-    import { onMount } from 'svelte';
+	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
+	import SidePanel from '$lib/components/layout/SidePanel.svelte';
+	import classes from 'svelte-transition-classes';
+	import { session } from '$app/stores';
+	import { onMount } from 'svelte';
 
-    export let show = false;
+	export let show = false;
 	let notes = [];
 
-    onMount(async function () {
-        const url = `/notes/list.json`;
+	onMount(async function () {
+		const url = `/notes/list.json`;
 		const res = await fetch(url);
 
 		if (res.ok) {
@@ -20,7 +20,7 @@
 			status: res.status,
 			error: new Error(`Failed to load ${url}`)
 		};
-    });
+	});
 </script>
 
 {#if show}
@@ -111,10 +111,8 @@
 				{#each notes as note}
 					{#if $session.user !== null && $session.user.isAdmin}
 						<ArticleTile {...note} />
-					{:else}
-						{#if !note.isDraft}
-							<ArticleTile {...note} />
-						{/if}
+					{:else if !note.isDraft}
+						<ArticleTile {...note} />
 					{/if}
 				{/each}
 			</SidePanel>

@@ -8,7 +8,7 @@
 	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 	import { session } from '$app/stores';
-	
+
 	let url;
 	let isANoteOpen = false;
 	let showLogin = false;
@@ -17,18 +17,18 @@
 
 	beforeUpdate(() => {
 		isANoteOpen = true;
-		url = new URL(window.location.href)
+		url = new URL(window.location.href);
 
-		if (url.pathname === "/notes" || url.pathname.lastIndexOf("/notes") !== 0) {
+		if (url.pathname === '/notes' || url.pathname.lastIndexOf('/notes') !== 0) {
 			isANoteOpen = false;
 		}
 	});
 
 	afterUpdate(() => {
 		isANoteOpen = true;
-		url = new URL(window.location.href)
+		url = new URL(window.location.href);
 
-		if (url.pathname === "/notes" || url.pathname.lastIndexOf("/notes") !== 0) {
+		if (url.pathname === '/notes' || url.pathname.lastIndexOf('/notes') !== 0) {
 			isANoteOpen = false;
 		}
 	});
@@ -47,7 +47,7 @@
 		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
 		rel="stylesheet"
 	/>
-  	<title>Untitled Projects</title>
+	<title>Untitled Projects</title>
 </svelte:head>
 
 <div class="min-h-screen flex">
@@ -61,7 +61,11 @@
 		<div class="flex-1 relative z-0 flex overflow-hidden">
 			<div class="flex flex-col min-w-0 flex-1 overflow-hidden">
 				<div class="flex-1 relative z-0 flex overflow-hidden">
-					<MobileTopBar bind:isANoteOpen bind:shouldShowOffCanvasMenu={showOffCanvasMenu} bind:shouldShowOffCanvasNoteMenu={showOffCanvasNoteMenu} />
+					<MobileTopBar
+						bind:isANoteOpen
+						bind:shouldShowOffCanvasMenu={showOffCanvasMenu}
+						bind:shouldShowOffCanvasNoteMenu={showOffCanvasNoteMenu}
+					/>
 					<!-- To preserve the space for DesktopMenu -->
 					<div class="lg:flex lg:flex-col lg:w-64 lg:order-first print:hidden" />
 					<slot />

@@ -27,30 +27,30 @@
 
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
-    let url;
+	let url;
 	let showSidePanel = false;
 	let innerWidth = 0;
 
 	beforeUpdate(() => {
 		showSidePanel = false;
-		url = new URL(window.location.href)
+		url = new URL(window.location.href);
 
-		if (url.pathname === "/notes") {
+		if (url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
 
-    afterUpdate(() => {
+	afterUpdate(() => {
 		showSidePanel = false;
-		url = new URL(window.location.href)
+		url = new URL(window.location.href);
 
-		if (url.pathname === "/notes") {
+		if (url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
 </script>
 
-<svelte:window bind:innerWidth={innerWidth} />
+<svelte:window bind:innerWidth />
 
 <MainPanel>
 	<div class="mt-6 lg:mt-0">
@@ -64,10 +64,8 @@
 				{#each notes as note}
 					{#if $session.user !== null && $session.user.isAdmin}
 						<ArticleTile {...note} />
-					{:else}
-						{#if !note.isDraft}
-							<ArticleTile {...note} />
-						{/if}
+					{:else if !note.isDraft}
+						<ArticleTile {...note} />
 					{/if}
 				{/each}
 			</SidePanel>
@@ -77,10 +75,8 @@
 			{#each notes as note}
 				{#if $session.user !== null && $session.user.isAdmin}
 					<ArticleTile {...note} />
-				{:else}
-					{#if !note.isDraft}
-						<ArticleTile {...note} />
-					{/if}
+				{:else if !note.isDraft}
+					<ArticleTile {...note} />
 				{/if}
 			{/each}
 		</SidePanel>

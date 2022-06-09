@@ -1,4 +1,3 @@
-<!-- TODO: Change this into EditBox -->
 <script>
 	import { fly, scale } from 'svelte/transition';
 	import { bounceIn } from 'svelte/easing';

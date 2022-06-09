@@ -16,7 +16,10 @@
 			<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
 				<h2 class="font-semibold text-lg">Printing or exporting to PDF?</h2>
 				<p class="pt-2 text-gray-700">
-					If you can see this, then it means you are viewing a printed or PDF version of my personal page (which means it might be outdated). Please visit https://untitled.codes/nico for the latest information, sorry for you inconvenience. Version exported {month + 1}/{date}/{year}.
+					If you can see this, then it means you are viewing a printed or PDF version of my personal
+					page (which means it might be outdated). Please visit https://untitled.codes/nico for the
+					latest information, sorry for you inconvenience. Version exported {month +
+						1}/{date}/{year}.
 				</p>
 			</div>
 		</div>
@@ -57,7 +60,10 @@
 		<h2>The Bement School '20</h2>
 	</div>
 	<br />
-	<p>I also have taken the responsibility of a couple of leadership positions, such as resident leader at NMH and leader of the robotics club.</p>
+	<p>
+		I also have taken the responsibility of a couple of leadership positions, such as resident
+		leader at NMH and leader of the robotics club.
+	</p>
 	<br />
 	<div>
 		<ProjectTable
