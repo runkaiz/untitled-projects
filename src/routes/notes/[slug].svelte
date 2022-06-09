@@ -21,6 +21,7 @@
 <script>
 	import { goto } from '$app/navigation';
 	import SvelteMarkdown from 'svelte-markdown';
+	import { session } from '$app/stores';
 
 	export let note;
 
@@ -44,7 +45,7 @@
 	}
 </script>
 
-{#if note.isDraft}
+{#if note.isDraft && $session.user.isAdmin}
 	<!-- This example requires Tailwind CSS v2.0+ -->
 	<div class="bg-gray-50 rounded-md sm:rounded-lg mb-6">
 		<div class="px-4 py-5 sm:p-6">
