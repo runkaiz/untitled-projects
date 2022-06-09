@@ -32,7 +32,7 @@ export const menuItems = [
 		items: [
 			{
 				iconClass: 'ri-sd-card-mini-line',
-				label: 'Nico',
+				label: 'nico',
 				href: '/nico'
 			},
 			{
@@ -42,14 +42,14 @@ export const menuItems = [
 			}
 		]
 	},
-	{
-		name: 'Misc',
-		items: [
-			{
-				iconClass: 'ri-bar-chart-2-line',
-				label: 'Status Report',
-				href: 'https://status.untitled.codes'
-			}
-		]
-	}
+	// {
+	// 	name: 'Misc',
+	// 	items: [
+	// 		{
+	// 			iconClass: 'ri-bar-chart-2-line',
+	// 			label: 'Status Report',
+	// 			href: 'https://status.untitled.codes'
+	// 		}
+	// 	]
+	// }
 ];
