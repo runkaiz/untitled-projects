@@ -19,70 +19,45 @@ export async function post({ request, locals }) {
 			slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 		}
 
-		// Check if slug exists in db.
-		let noteFound = await prisma.note.findFirst({
-			where: {
-				slug: slug
+		const note = await prisma.note.upsert({
+			update: {
+				title: title,
+				content: content,
+				isDraft: isDraft,
+				slug: slug,
+				coauthors: {
+					set: [],
+					connect: coauthors.map((coauthor) => ({
+						id: coauthor.id
+					}))
+				}
 			},
-			select: {
-				author: true,
-				coauthors: true
-			}
-		});
-
-		if (noteFound) {
-			// Update existing note.
-			noteFound = await prisma.note.update({
-				where: {
-					slug: slug
+			where: {
+				slug: slug,
+			},
+			create: {
+				title: title,
+				content: content,
+				isDraft: isDraft,
+				slug: slug,
+				author: {
+					connect: {
+						id: locals.user.userId
+					}
 				},
-				data: {
-					title: title,
-					content: content,
-					isDraft: isDraft,
-					slug: slug,
-					author: {
-						connect: {
-							id: noteFound.author.id
-						}
-					},
-					coauthors: {
-						disconnect: noteFound.coauthors.map((coauthor) => ({
-							id: coauthor.id
-						})),
-						connect: coauthors.map((coauthor) => ({
-							id: coauthor.id
-						}))
-					}
+				coauthors: {
+					connect: coauthors.map((coauthor) => ({
+						id: coauthor.id
+					}))
 				}
-			});
-		} else {
-			// Create new note.
-			noteFound = await prisma.note.create({
-				data: {
-					title: title,
-					content: content,
-					isDraft: isDraft,
-					slug: slug,
-					author: {
-						connect: {
-							id: locals.user.userId
-						}
-					},
-					coauthors: {
-						connect: coauthors.map((coauthor) => ({
-							id: coauthor.id
-						}))
-					}
-				}
-			});
-		}
+			},
+		})
 
 		return {
 			status: 200,
 			body: {
 				message: 'Note saved.',
-				note: noteFound
+				note: note
 			}
 		};
 	} catch (error) {
