@@ -42,14 +42,14 @@ export const menuItems = [
 			}
 		]
 	},
-	// {
-	// 	name: 'Misc',
-	// 	items: [
-	// 		{
-	// 			iconClass: 'ri-bar-chart-2-line',
-	// 			label: 'Status Report',
-	// 			href: 'https://status.untitled.codes'
-	// 		}
-	// 	]
-	// }
+	{
+		name: 'Misc',
+		items: [
+			{
+				iconClass: 'ri-bar-chart-2-line',
+				label: 'Status Report',
+				href: 'https://status.untitled.codes'
+			}
+		]
+	}
 ];
