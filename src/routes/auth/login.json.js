@@ -5,7 +5,7 @@ import { generateToken } from '$lib/utils/token';
 export async function post({ request }) {
 	const body = await request.json();
 	try {
-		const { email, password } = body;
+		const { email, password, remember } = body;
 		const user = await prisma.user.findFirst({
 			where: { email }
 		});
@@ -17,6 +17,20 @@ export async function post({ request }) {
 		if (!isValid) throw new Error('Invalid password');
 
 		const token = generateToken(user);
+
+		if (!remember) {
+			return {
+				status: 200,
+				body: {
+					error: null,
+					user: {
+						userId: user.id,
+						name: user.name,
+						isAdmin: user.role === 'ADMIN'
+					}
+				}
+			}
+		}
 
 		return {
 			status: 200,
