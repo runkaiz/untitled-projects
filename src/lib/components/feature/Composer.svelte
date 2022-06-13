@@ -19,15 +19,10 @@
 	let allAuthors = [];
 	let coauthorOptions = [];
 	let selectedCoauthors = [];
-	let isNew = true;
 	let isDeleting = false;
 	let noTitleError = false;
 
 	onMount(async () => {
-		if (slug !== null) {
-			isNew = false;
-		}
-
 		// Load all the users who can be selected as a co-author.
 		const { payload } = await fetch('/compose/meta/all-authors.json').then((res) => res.json());
 		allAuthors = payload;
@@ -144,7 +139,7 @@
 			}}>Preview</button
 		>
 		<div>
-			{#if !isNew}
+			{#if slug !== null}
 				<button
 					type="button"
 					class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-red-700 bg-white hover:bg-gray-50 focus:outline-none"
