@@ -1,6 +1,7 @@
 <script>
 	import classes from 'svelte-transition-classes';
 	import Keydown from 'svelte-keydown';
+	import { clickOutside } from '$lib/utils/clickOutside';
 	export let active;
 	export let title;
 	export let description = '';
@@ -51,7 +52,7 @@
 							to: 'translate-x-full'
 						}}
 					>
-						<div class="h-full flex flex-col bg-white overflow-y-scroll">
+						<div class="h-full flex flex-col bg-white overflow-y-scroll" use:clickOutside on:click_outside={() => (active = false)}>
 							<div class="py-6 px-4 bg-gray-50 sm:px-6">
 								<div class="flex items-center justify-between">
 									<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
