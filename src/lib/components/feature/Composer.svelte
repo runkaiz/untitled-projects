@@ -113,7 +113,7 @@
 
 	<input
 		type="text"
-		class="w-full py-1 mb-1 focus:ring-0 placeholder-gray-500 font-semibold text-xl focus:outline-none"
+		class="w-full py-1 mb-1 placeholder-gray-500 font-semibold text-xl focus:ring-0 focus:outline-none border-none"
 		placeholder="Title"
 		bind:value={title}
 	/>
