@@ -8,7 +8,7 @@
 	<div class="flex flex-col w-64">
 		<!-- Sidebar component, swap this element with another sidebar if you like -->
 		<div class="flex-1 flex flex-col min-h-0 border-r border-gray-200 bg-gray-100">
-			<div class="flex-1 flex flex-col pt-5 pb-4 overflow-y-auto">
+			<div class="flex-1 flex flex-col pt-5 pb-4">
 				<div class="flex items-center flex-shrink-0 px-4">
 					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"
 						><path fill="none" d="M0 0h24v24H0z" /><path
