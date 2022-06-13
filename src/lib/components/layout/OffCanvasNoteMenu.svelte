@@ -107,15 +107,17 @@
 				</button>
 			</div>
 
-			<SidePanel>
-				{#each notes as note}
-					{#if $session.user !== null && $session.user.isAdmin}
-						<ArticleTile {...note} />
-					{:else if !note.isDraft}
-						<ArticleTile {...note} />
-					{/if}
-				{/each}
-			</SidePanel>
+			<div on:click={() => (show = !show)}>
+				<SidePanel>
+					{#each notes as note}
+						{#if $session.user !== null && $session.user.isAdmin}
+							<ArticleTile {...note} />
+						{:else if !note.isDraft}
+							<ArticleTile {...note} />
+						{/if}
+					{/each}
+				</SidePanel>
+			</div>
 		</div>
 
 		<div class="flex-shrink-0 w-14" aria-hidden="true">
