@@ -20,8 +20,8 @@
 
 <script>
 	import { goto } from '$app/navigation';
-	import SvelteMarkdown from 'svelte-markdown';
 	import { session } from '$app/stores';
+	import Markdown from '$lib/components/content/Markdown.svelte';
 
 	export let note;
 
@@ -107,5 +107,5 @@
 </p>
 
 <article class="prose text-black">
-	<SvelteMarkdown source={note.content} />
+	<Markdown markdown={note.content} />
 </article>
