@@ -22,7 +22,7 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
-	import { session, store } from '$app/stores';
+	import { session, page } from '$app/stores';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
 	export let notes;
@@ -33,7 +33,7 @@
 	beforeUpdate(() => {
 		showSidePanel = false;
 
-		if ($store.url.pathname === '/notes') {
+		if ($page.url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
@@ -41,7 +41,7 @@
 	afterUpdate(() => {
 		showSidePanel = false;
 
-		if ($store.url.pathname === '/notes') {
+		if ($page.url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
