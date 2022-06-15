@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { page } from '$app/stores';
 	import SelectionMenu from '$lib/components/base/SelectionMenu.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
 	import ReactivePanel from '$lib/components/layout/ReactivePanel.svelte';
@@ -21,6 +22,8 @@
 	let selectedCoauthors = [];
 	let isDeleting = false;
 	let noTitleError = false;
+	let saveMessage = 'No new changes';
+	let editorContent = content;
 
 	onMount(async () => {
 		// Load all the users who can be selected as a co-author.
@@ -30,7 +33,12 @@
 		selectedCoauthors = coauthors;
 	});
 
-	async function saveNote() {
+	async function saveNote(redirect) {
+		if (!contentChanged()) {
+			return;
+		}
+
+		content = editorContent;
 		if (title.trim() === '') {
 			noTitleError = true;
 			return;
@@ -53,12 +61,17 @@
 
 		// TODO: Better error/success handling.
 		if (status === 200) {
-			// If successful, redirect to the note.
 			if (!slug) {
 				// Generate a slug with note.title.
 				slug = title.toLowerCase().replace(/[^a-z0-9]/g, '-');
 			}
-			goto(`/notes/${slug}`);
+			if (redirect) {
+				// If asked to redirect, redirect to the note.
+				goto(`/notes/${slug}`);
+			} else {
+				let currentDate = new Date();
+				saveMessage = 'Last saved: ' + currentDate.getHours() + ':' + currentDate.getMinutes();
+			}
 		} else {
 			// If not, show an error.
 			alert('Error saving note.');
@@ -84,26 +97,64 @@
 			alert('Error deleting note.');
 		}
 	}
+
+	function contentChanged() {
+		if (content === editorContent) {
+			saveMessage = 'No changes';
+			return false;
+		} else {
+			saveMessage = 'Changes not saved';
+			return true;
+		}
+	}
 </script>
 
 <div class="flex flex-col h-full">
 	<!-- Go back to view all notes. -->
 	<div class="mb-2 flex-none">
-		<a
-			href="/notes"
-			class="inline-flex items-center py-1.5 text-xs font-medium rounded text-gray-700"
-		>
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				class="-ml-1 h-3 w-3"
-				fill="none"
-				viewBox="0 0 24 24"
-				stroke="currentColor"
+		{#if $page.url.pathname == '/compose/new'}
+			<a
+				href="/notes"
+				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-gray-700"
 			>
-				<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
-			</svg>
-			Notes
-		</a>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="-ml-1 h-3 w-3"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M15 19l-7-7 7-7"
+					/>
+				</svg>
+				Notes
+			</a>
+		{:else}
+			<a
+				href={`/notes/${slug}`}
+				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-gray-700"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					class="-ml-1 h-3 w-3"
+					fill="none"
+					viewBox="0 0 24 24"
+					stroke="currentColor"
+				>
+					<path
+						stroke-linecap="round"
+						stroke-linejoin="round"
+						stroke-width="2"
+						d="M15 19l-7-7 7-7"
+					/>
+				</svg>
+				Notes
+			</a>
+		{/if}
 	</div>
 
 	<input
@@ -112,23 +163,24 @@
 		placeholder="Title"
 		bind:value={title}
 	/>
-	<textarea
-		class="{preview
-			? 'hidden'
-			: ''} block w-full h-[75vh] border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
-		placeholder="Write something..."
-		bind:value={content}
-	/>
+
 	{#if preview}
 		<div class="w-full min-h-[80vh]">
 			<prose class="prose">
-				<SvelteMarkdown source={content} />
+				<SvelteMarkdown source={editorContent} />
 			</prose>
 		</div>
+	{:else}
+		<textarea
+			class="block w-full h-[75vh] border-0 py-0 resize-none placeholder-gray-500 focus:ring-0 focus:outline-none sm:text-sm"
+			placeholder="Write something..."
+			bind:value={editorContent}
+			on:input={() => contentChanged()}
+		/>
 	{/if}
 
 	<!-- Bottom toolbar -->
-	<div class="flex flex-row grow-0 justify-between space-x-2">
+	<div class="flex flex-row grow-0 justify-between space-x-2 mt-4">
 		<button
 			type="button"
 			class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 {preview
@@ -139,6 +191,12 @@
 			}}>Preview</button
 		>
 		<div>
+			<div
+				type="button"
+				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white focus:outline-none"
+			>
+				{saveMessage}
+			</div>
 			{#if slug !== null}
 				<button
 					type="button"
@@ -158,10 +216,8 @@
 			<button
 				type="button"
 				class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-				on:click={saveNote}
+				on:click={() => saveNote(false)}>Save</button
 			>
-				Save
-			</button>
 		</div>
 	</div>
 </div>
@@ -231,7 +287,8 @@
 						</h3>
 						<div class="mt-2">
 							<p class="text-sm text-gray-500">
-								This note can't be saved because doesn't have a title yet! Write a title for your note to save it.
+								This note can't be saved because doesn't have a title yet! Write a title for your
+								note to save it.
 							</p>
 						</div>
 					</div>

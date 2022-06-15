@@ -22,29 +22,26 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
-	import { session } from '$app/stores';
-	export let notes;
-
+	import { session, store } from '$app/stores';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
-	let url;
+	export let notes;
+
 	let showSidePanel = false;
 	let innerWidth = 0;
 
 	beforeUpdate(() => {
 		showSidePanel = false;
-		url = new URL(window.location.href);
 
-		if (url.pathname === '/notes') {
+		if ($store.url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
 
 	afterUpdate(() => {
 		showSidePanel = false;
-		url = new URL(window.location.href);
 
-		if (url.pathname === '/notes') {
+		if ($store.url.pathname === '/notes') {
 			showSidePanel = true;
 		}
 	});
