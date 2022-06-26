@@ -37,12 +37,13 @@
 
 	async function saveNote(redirect) {
 		if (!contentChanged()) {
+			console.log("Huh?")
 			return;
 		}
 
 		content = editorContent;
 		isDraft = remainDraft;
-		slug = editorslug;
+		slug = editorSlug;
 
 		if (title.trim() === '') {
 			noTitleError = true;
@@ -104,7 +105,7 @@
 	}
 
 	function contentChanged() {
-		if (content === editorContent || isDraft === remainDraft || slug === editorSlug || coauthors === selectedCoauthors) {
+		if (content === editorContent && isDraft === remainDraft && slug === editorSlug && coauthors === selectedCoauthors) {
 			saveMessage = 'No changes';
 			return false;
 		} else {
@@ -422,6 +423,7 @@
 					class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 					on:change={(e) => {
 						remainDraft = !e.target.checked;
+						contentChanged();
 					}}
 				/>
 				<label for="publish" class="ml-2 block text-sm text-gray-900"> Publish </label>
