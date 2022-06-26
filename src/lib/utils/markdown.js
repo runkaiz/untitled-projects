@@ -20,7 +20,6 @@ let md = new MarkdownIt({
 md.use(markdownItImageLazyLoading, {
 	decoding: true,
 });
-md.use(footnote_plugin);
 md.use(html5Media);
 
 export default md;
