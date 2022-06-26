@@ -1,6 +1,6 @@
 import { prisma } from '$lib/prisma';
 
-export async function get({ url }) {
+export async function get() {
 	try {
 		const notes = await prisma.note.findMany({
 			orderBy: {

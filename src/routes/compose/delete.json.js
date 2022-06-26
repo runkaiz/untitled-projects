@@ -13,7 +13,7 @@ export async function post({ request, locals }) {
 		const body = await request.json();
 		let { slug } = body;
 
-		const note = await prisma.note.delete({
+		await prisma.note.delete({
 			where: { slug: slug }
 		});
 

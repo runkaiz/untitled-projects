@@ -1,8 +1,9 @@
 <script>
+	/* disabled for lint purposes, reenable when implementing.
 	import { fly, scale } from 'svelte/transition';
 	import { bounceIn } from 'svelte/easing';
 
-	let showTagPopover = false;
+ 	let showTagPopover = false;
 
 	let imageUploader = {
 		isUploading: false,
@@ -21,6 +22,7 @@
 		}
 	};
 
+	
 	function refreshUpdates() {
 		// TODO: fetch updates from server and update the state
 	}
@@ -31,8 +33,8 @@
 		// - content (string)
 		// - image-upload (file)
 
-		const form = event.target;
-		const formData = new FormData(form);
+		// const form = event.target;
+		// const formData = new FormData(form);
 
 		// Validate form input:
 		// - title is not empty
@@ -154,9 +156,10 @@
 		imageUploader.isUploading = false;
 		imageUploader.textPrompt = 'Replace image?';
 	}
+	*/
 </script>
 
-<form on:submit|preventDefault={postUpdate} class="relative mb-6">
+<!-- <form on:submit|preventDefault={postUpdate} class="relative mb-6">
 	<div
 		class="border border-gray-300 px-3 rounded-lg shadow-sm overflow-hidden focus-within:shadow-lg transition-shadow"
 	>
@@ -179,7 +182,6 @@
 			bind:value={newUpdate.content}
 		/>
 
-		<!-- Spacer element to match the height of the toolbar -->
 		<div aria-hidden="true">
 			<div class="h-px" />
 			<div class="py-2">
@@ -299,7 +301,6 @@
 							aria-labelledby="listbox-label"
 							on:click={() => (showTagPopover = !showTagPopover)}
 						>
-							<!-- Selected user avatar, show/hide based on listbox state. -->
 							{#if newUpdate.tagged.nico}
 								<img
 									src="https://avatars.githubusercontent.com/u/34772239?v=4"
@@ -316,7 +317,6 @@
 								/>
 							{/if}
 
-							<!-- Selected: "text-gray-900" -->
 							<span class="hidden truncate sm:block"> Tag </span>
 						</button>
 
@@ -384,4 +384,4 @@
 			</div>
 		</div>
 	</div>
-</form>
+</form> -->
