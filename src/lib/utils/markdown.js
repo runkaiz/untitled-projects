@@ -1,5 +1,4 @@
 import MarkdownIt from 'markdown-it';
-import markdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
 import 'highlight.js/styles/github-dark.css';
 
 import hljs from 'highlight.js';
@@ -15,9 +14,6 @@ let md = new MarkdownIt({
 		}
 		return ''; // use external default escaping
 	}
-});
-md.use(markdownItImageLazyLoading, {
-	decoding: true,
 });
 
 export default md;
