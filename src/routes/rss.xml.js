@@ -1,38 +1,38 @@
-import { getNotes } from '$lib/utils/getNotes'
-import MarkdownIt from 'markdown-it'
-import 'highlight.js/styles/github-dark.css'
+import { getNotes } from '$lib/utils/getNotes';
+import MarkdownIt from 'markdown-it';
+import 'highlight.js/styles/github-dark.css';
 
-import hljs from 'highlight.js'
+import hljs from 'highlight.js';
 
 const md = new MarkdownIt({
 	highlight: function (str, lang) {
 		if (lang && hljs.getLanguage(lang)) {
 			try {
-				return hljs.highlight(str, { language: lang }).value
+				return hljs.highlight(str, { language: lang }).value;
 			} catch (e) {
 				// eslint-disable-next-line no-console
-				console.error('Failed to highlight string')
+				console.error('Failed to highlight string');
 			}
 		}
-		return '' // use external default escaping
+		return ''; // use external default escaping
 	}
-})
+});
 
-export async function get () {
-	const notes = await getNotes()
-	const body = xml(notes)
+export async function get() {
+	const notes = await getNotes();
+	const body = xml(notes);
 
 	const headers = {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
 		'Content-Type': 'application/xml'
-	}
+	};
 	return {
 		headers,
 		body
-	}
+	};
 }
 
-const xml = notes =>
+const xml = (notes) =>
 	`<rss xmlns:dc="https://purl.org/dc/elements/1.1/" xmlns:content="https://purl.org/rss/1.0/modules/content/" xmlns:atom="https://www.w3.org/2005/Atom" version="2.0">
 <channel>
   <title>Untitled Notes</title>
@@ -40,7 +40,7 @@ const xml = notes =>
   <description>A blog built with SvelteKit about tech and stuff!</description>
   ${notes
 		.map(
-			note =>
+			(note) =>
 				`
         <item>
           <title>${note.title}</title>
@@ -55,4 +55,4 @@ const xml = notes =>
 		)
 		.join('')}
 </channel>
-</rss>`
+</rss>`;

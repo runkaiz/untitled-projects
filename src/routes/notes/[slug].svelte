@@ -26,11 +26,11 @@
 
 	export let note;
 
-	let rendered = "";
+	let rendered = '';
 
 	afterUpdate(() => {
 		rendered = md.render(note.content);
-	})
+	});
 
 	function convertDate(date) {
 		const months = [

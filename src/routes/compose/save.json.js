@@ -33,7 +33,7 @@ export async function post({ request, locals }) {
 				}
 			},
 			where: {
-				slug: slug,
+				slug: slug
 			},
 			create: {
 				title: title,
@@ -50,8 +50,8 @@ export async function post({ request, locals }) {
 						id: coauthor.id
 					}))
 				}
-			},
-		})
+			}
+		});
 
 		return {
 			status: 200,

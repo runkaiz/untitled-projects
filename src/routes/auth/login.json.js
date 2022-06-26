@@ -29,7 +29,7 @@ export async function post({ request }) {
 						isAdmin: user.role === 'ADMIN'
 					}
 				}
-			}
+			};
 		}
 
 		return {
