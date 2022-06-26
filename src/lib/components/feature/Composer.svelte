@@ -24,6 +24,8 @@
 	let noTitleError = false;
 	let saveMessage = 'No new changes';
 	let editorContent = content;
+	let editorSlug = slug;
+	let remainDraft = isDraft;
 
 	onMount(async () => {
 		// Load all the users who can be selected as a co-author.
@@ -39,6 +41,9 @@
 		}
 
 		content = editorContent;
+		isDraft = remainDraft;
+		slug = editorslug;
+
 		if (title.trim() === '') {
 			noTitleError = true;
 			return;
@@ -99,7 +104,7 @@
 	}
 
 	function contentChanged() {
-		if (content === editorContent) {
+		if (content === editorContent || isDraft === remainDraft || slug === editorSlug || coauthors === selectedCoauthors) {
 			saveMessage = 'No changes';
 			return false;
 		} else {
@@ -399,7 +404,7 @@
 
 <ReactivePanel bind:active={showMeta} title="Edit Metadata">
 	<div class="space-y-6">
-		<TextField name="slug" label="Slug" autocomplete={false} bind:value={slug} />
+		<TextField name="slug" label="Slug" autocomplete={false} bind:value={editorSlug} />
 		<TextField
 			name="author"
 			label="Author"
@@ -416,7 +421,7 @@
 					type="checkbox"
 					class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
 					on:change={(e) => {
-						isDraft = !e.target.checked;
+						remainDraft = !e.target.checked;
 					}}
 				/>
 				<label for="publish" class="ml-2 block text-sm text-gray-900"> Publish </label>
