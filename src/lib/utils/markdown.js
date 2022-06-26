@@ -1,4 +1,7 @@
 import MarkdownIt from 'markdown-it';
+import markdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
+import footnote_plugin from '@gerhobbelt/markdown-it-footnote';
+import { html5Media } from 'markdown-it-html5-media';
 import 'highlight.js/styles/github-dark.css';
 
 import hljs from 'highlight.js';
@@ -15,5 +18,10 @@ let md = new MarkdownIt({
 		return ''; // use external default escaping
 	}
 });
+md.use(markdownItImageLazyLoading, {
+	decoding: true,
+});
+md.use(footnote_plugin);
+md.use(html5Media);
 
 export default md;
