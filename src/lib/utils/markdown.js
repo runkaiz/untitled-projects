@@ -1,6 +1,5 @@
 import MarkdownIt from 'markdown-it';
 import markdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
-import footnote_plugin from '@gerhobbelt/markdown-it-footnote';
 import { html5Media } from 'markdown-it-html5-media';
 import 'highlight.js/styles/github-dark.css';
 
