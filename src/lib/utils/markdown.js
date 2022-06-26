@@ -1,6 +1,5 @@
 import MarkdownIt from 'markdown-it';
 import markdownItImageLazyLoading from 'markdown-it-image-lazy-loading';
-import { html5Media } from 'markdown-it-html5-media';
 import 'highlight.js/styles/github-dark.css';
 
 import hljs from 'highlight.js';
@@ -20,6 +19,5 @@ let md = new MarkdownIt({
 md.use(markdownItImageLazyLoading, {
 	decoding: true,
 });
-md.use(html5Media);
 
 export default md;
