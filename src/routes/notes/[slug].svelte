@@ -21,9 +21,16 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
-	import Markdown from '$lib/components/content/Markdown.svelte';
+	import md from '$lib/utils/markdown';
+	import { afterUpdate } from 'svelte';
 
 	export let note;
+
+	let rendered = "";
+
+	afterUpdate(() => {
+		rendered = md.render(note.content);
+	})
 
 	function convertDate(date) {
 		const months = [
@@ -107,5 +114,5 @@
 </p>
 
 <article class="prose text-black">
-	<Markdown markdown={note.content} />
+	{@html rendered}
 </article>
