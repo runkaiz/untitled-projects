@@ -12,7 +12,7 @@ let md = new MarkdownIt({
 				console.error('Failed to highlight string');
 			}
 		}
-		return ''; // use external default escaping
+		return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
 	}
 });
 

@@ -49,6 +49,11 @@ export const menuItems = [
 				iconClass: 'ri-bar-chart-2-line',
 				label: 'Status Report',
 				href: 'https://status.untitled.codes'
+			},
+			{
+				iconClass: 'ri-file-list-3-line',
+				label: 'Changelog',
+				href: '/changelog'
 			}
 		]
 	}
