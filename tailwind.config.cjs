@@ -12,7 +12,7 @@ module.exports = {
 				link: '#5047E5',
 				linkHover: '49 46 129',
 				paragraph: '#374151',
-				title: '#111827',
+				title: '#111827'
 			},
 			order: {
 				second: '-9998'

@@ -3,25 +3,25 @@
 @tailwind utilities;
 
 @layer base {
-    h1 {
-        @apply font-semibold text-2xl text-title;
-    }
+	h1 {
+		@apply font-semibold text-2xl text-title;
+	}
 
-    h2 {
-        @apply font-semibold text-lg text-title;
-    }
+	h2 {
+		@apply font-semibold text-lg text-title;
+	}
 
-    h3 {
-        @apply text-lg font-medium text-title;
-    }
+	h3 {
+		@apply text-lg font-medium text-title;
+	}
 
-    p {
-        @apply text-base text-paragraph;
-    }
+	p {
+		@apply text-base text-paragraph;
+	}
 }
 
 @layer components {
-    .hyperlink {
-        @apply text-link hover:text-linkHover;
-    }
+	.hyperlink {
+		@apply text-link hover:text-linkHover;
+	}
 }

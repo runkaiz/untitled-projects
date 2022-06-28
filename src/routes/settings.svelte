@@ -140,9 +140,7 @@
 				<div class="px-4 py-5 bg-white space-y-6 sm:p-6">
 					<div>
 						<h3 class="leading-6">My Account</h3>
-						<p class="mt-1 text-sm">
-							Update your account information or change your password.
-						</p>
+						<p class="mt-1 text-sm">Update your account information or change your password.</p>
 					</div>
 					<div class="grid grid-cols-6 gap-6">
 						<div class="col-span-6 sm:col-span-3">

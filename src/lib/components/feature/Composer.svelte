@@ -37,7 +37,7 @@
 
 	async function saveNote(redirect) {
 		if (!contentChanged()) {
-			console.log("Huh?")
+			console.log('Huh?');
 			return;
 		}
 
@@ -105,7 +105,12 @@
 	}
 
 	function contentChanged() {
-		if (content === editorContent && isDraft === remainDraft && slug === editorSlug && coauthors === selectedCoauthors) {
+		if (
+			content === editorContent &&
+			isDraft === remainDraft &&
+			slug === editorSlug &&
+			coauthors === selectedCoauthors
+		) {
 			saveMessage = 'No changes';
 			return false;
 		} else {
@@ -288,9 +293,7 @@
 						</svg>
 					</div>
 					<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-						<h3 class="leading-6" id="modal-title">
-							Missing title
-						</h3>
+						<h3 class="leading-6" id="modal-title">Missing title</h3>
 						<div class="mt-2">
 							<p class="text-sm text-gray-500">
 								This note can't be saved because doesn't have a title yet! Write a title for your
@@ -373,9 +376,7 @@
 						</svg>
 					</div>
 					<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-						<h3 class="leading-6" id="modal-title">
-							Delete note
-						</h3>
+						<h3 class="leading-6" id="modal-title">Delete note</h3>
 						<div class="mt-2">
 							<p class="text-sm text-gray-500">
 								Are you sure you want to delete this note? It will be permanently removed from our

@@ -1,5 +1,5 @@
 <script>
-	import HyperLink from "./HyperLink.svelte";
+	import HyperLink from './HyperLink.svelte';
 
 	export let title;
 	export let subtitle;
