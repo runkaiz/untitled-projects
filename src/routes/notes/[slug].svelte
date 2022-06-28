@@ -57,7 +57,7 @@
 		<!-- This example requires Tailwind CSS v2.0+ -->
 		<div class="bg-gray-50 rounded-md sm:rounded-lg mb-6">
 			<div class="px-4 py-5 sm:p-6">
-				<h3 class="text-lg leading-6 font-medium text-title">This is a draft.</h3>
+				<h3 class="leading-6">This is a draft.</h3>
 				<div class="mt-2 max-w-xl text-sm text-gray-500">
 					<p>Visitors cannot see this post just yet. Enter edit mode to publish.</p>
 				</div>
@@ -75,7 +75,7 @@
 	{:else}
 		<div class="bg-gray-50 rounded-md sm:rounded-lg mb-6">
 			<div class="px-4 py-5 sm:p-6">
-				<h3 class="text-lg leading-6 font-medium text-title">Published!</h3>
+				<h3 class="leading-6">Published!</h3>
 				<div class="mt-2 max-w-xl text-sm text-gray-500">
 					<p>This note had already been published</p>
 				</div>

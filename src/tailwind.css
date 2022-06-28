@@ -11,6 +11,10 @@
         @apply font-semibold text-lg text-title;
     }
 
+    h3 {
+        @apply text-lg font-medium text-title;
+    }
+
     p {
         @apply text-base text-paragraph;
     }

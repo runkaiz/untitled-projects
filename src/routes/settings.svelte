@@ -139,8 +139,8 @@
 			<div class="border border-gray-200 sm:rounded-lg sm:overflow-hidden">
 				<div class="px-4 py-5 bg-white space-y-6 sm:p-6">
 					<div>
-						<h3 class="text-lg font-medium leading-6 text-title">My Account</h3>
-						<p class="mt-1 text-sm text-gray-600">
+						<h3 class="leading-6">My Account</h3>
+						<p class="mt-1 text-sm">
 							Update your account information or change your password.
 						</p>
 					</div>

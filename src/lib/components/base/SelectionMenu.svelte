@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<p class="block text-sm font-medium text-paragraph">{label}</p>
+	<p class="block text-sm font-medium">{label}</p>
 	<div class="relative">
 		<button
 			type="button"

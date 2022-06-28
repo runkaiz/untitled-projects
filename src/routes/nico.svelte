@@ -1,4 +1,5 @@
 <script>
+	import DescriptionBox from '$lib/components/content/DescriptionBox.svelte';
 	import HyperLink from '$lib/components/content/HyperLink.svelte';
 	import Project from '$lib/components/content/items/Project.svelte';
 	import ProjectTable from '$lib/components/content/ProjectTable.svelte';
@@ -12,17 +13,11 @@
 
 <MainPanel>
 	<div class="hidden print:block">
-		<div class="flex flex-row">
-			<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
-				<h2>Printing or exporting to PDF?</h2>
-				<p class="pt-2">
-					If you can see this, then it means you are viewing a printed or PDF version of my personal
-					page (which means it might be outdated). Please visit https://untitled.codes/nico for the
-					latest information, sorry for you inconvenience. Version exported {month +
-						1}/{date}/{year}.
-				</p>
-			</div>
-		</div>
+		<DescriptionBox title="Printing or exporting to PDF?">
+			If you can see this, then it means you are viewing a printed or PDF version of my personal
+			page (which means it might be outdated). Please visit https://untitled.codes/nico for the
+			latest information, sorry for you inconvenience. Version exported {month + 1}/{date}/{year}.
+		</DescriptionBox>
 	</div>
 	<h1>Runkai (Nico) Zhang</h1>
 	<p class="pt-2">
@@ -38,15 +33,10 @@
 			link="https://www.inspiritai.com/">Inspirit AI's A.I. Scholars program</HyperLink
 		>.
 	</p>
-	<div class="flex flex-row">
-		<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
-			<h2>A work in progress.</h2>
-			<p class="pt-2">
-				I am still compiling and designing what is going to be placed inside this section, so bear
-				with me for now.
-			</p>
-		</div>
-	</div>
+	<DescriptionBox title="A work in progress.">
+		I am still compiling and designing what is going to be placed inside this section, so bear with
+		me for now.
+	</DescriptionBox>
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
 			<h2>High School</h2>
