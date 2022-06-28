@@ -8,7 +8,7 @@
 </script>
 
 <div>
-	<p class="block text-sm font-medium text-gray-700">{label}</p>
+	<p class="block text-sm font-medium text-paragraph">{label}</p>
 	<div class="relative">
 		<button
 			type="button"
@@ -60,7 +60,7 @@
 			>
 				{#each options as option}
 					<li
-						class="text-gray-900 cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-indigo-600 hover:text-white"
+						class="text-title cursor-default select-none relative py-2 pl-3 pr-9 hover:bg-link hover:text-white"
 						role="option"
 						on:click={() => {
 							if (selected.some((item) => item.id === option.id)) {
@@ -82,7 +82,7 @@
 
 						{#if selected.some((item) => item.id === option.id)}
 							<span
-								class="text-indigo-600 absolute inset-y-0 right-0 flex items-center pr-4 hover:text-white"
+								class="text-link absolute inset-y-0 right-0 flex items-center pr-4 hover:text-white"
 							>
 								<!-- Heroicon name: solid/check -->
 								<svg

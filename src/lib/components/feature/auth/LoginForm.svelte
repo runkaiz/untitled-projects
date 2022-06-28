@@ -42,9 +42,9 @@
 				id="remember-me"
 				name="remember-me"
 				type="checkbox"
-				class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+				class="h-4 w-4 text-link focus:ring-indigo-500 border-gray-300 rounded"
 			/>
-			<label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
+			<label for="remember-me" class="ml-2 block text-sm text-title"> Remember me </label>
 		</div>
 
 		<div class="text-sm">
@@ -53,7 +53,7 @@
 				on:click|preventDefault={() => {
 					// TODO: Implement forgot password
 				}}
-				class="font-medium text-indigo-600 hover:text-indigo-500"
+				class="font-medium text-link hover:text-indigo-500"
 			>
 				Forgot your password?
 			</button>
@@ -63,7 +63,7 @@
 	<div>
 		<button
 			type="submit"
-			class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+			class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-link hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 		>
 			Sign in
 		</button>

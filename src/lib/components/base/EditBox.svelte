@@ -177,7 +177,7 @@
 			rows="4"
 			name="content"
 			id="content"
-			class="block w-full border-0 py-0 resize-none placeholder-gray-400 focus:ring-0 text-gray-700 focus:outline-none"
+			class="block w-full border-0 py-0 resize-none placeholder-gray-400 focus:ring-0 text-paragraph focus:outline-none"
 			placeholder="Write something..."
 			bind:value={newUpdate.content}
 		/>
@@ -232,7 +232,7 @@
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							class="-ml-1 h-5 w-5 text-green-500 group-hover:text-indigo-600 absolute"
+							class="-ml-1 h-5 w-5 text-green-500 group-hover:text-link absolute"
 							fill="currentColor"
 							in:scale={{
 								duration: 100,
@@ -253,7 +253,7 @@
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							viewBox="0 0 24 24"
-							class="-ml-1 h-5 w-5 group-hover:text-indigo-600 {imageUploader.error
+							class="-ml-1 h-5 w-5 group-hover:text-link {imageUploader.error
 								? 'text-red-600'
 								: ''} absolute"
 							fill="currentColor"
@@ -277,7 +277,7 @@
 					{/if}
 					<span
 						class="text-sm ml-6 {imageUploader.error ? 'text-red-600' : 'text-gray-500'} 
-							{imageUploader.isUploading ? '' : 'group-hover:text-indigo-600'} italic"
+							{imageUploader.isUploading ? '' : 'group-hover:text-link'} italic"
 						>{imageUploader.textPrompt}</span
 					>
 					<input
@@ -375,7 +375,7 @@
 						class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white {!newUpdate.content ||
 						imageUploader.isUploading
 							? 'bg-gray-300 cursor-default'
-							: 'cursor-pointer bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 '} transition-colors"
+							: 'cursor-pointer bg-link hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 '} transition-colors"
 						disabled={!newUpdate.content || imageUploader.isUploading}
 					>
 						Post

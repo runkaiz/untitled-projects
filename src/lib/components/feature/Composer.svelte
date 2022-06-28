@@ -121,7 +121,7 @@
 		{#if $page.url.pathname == '/compose/new'}
 			<a
 				href="/notes"
-				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-gray-700"
+				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-paragraph"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -142,7 +142,7 @@
 		{:else}
 			<a
 				href={`/notes/${slug}`}
-				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-gray-700"
+				class="inline-flex items-center py-1.5 text-xs font-medium rounded text-paragraph"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -189,7 +189,7 @@
 	<div class="flex flex-row grow-0 justify-between space-x-2 mt-4">
 		<button
 			type="button"
-			class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 {preview
+			class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-paragraph bg-white hover:bg-gray-50 {preview
 				? 'bg-gray-50'
 				: ''} focus:outline-none"
 			on:click={() => {
@@ -199,7 +199,7 @@
 		<div>
 			<div
 				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white focus:outline-none"
+				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-paragraph bg-white focus:outline-none"
 			>
 				{saveMessage}
 			</div>
@@ -214,14 +214,14 @@
 			{/if}
 			<button
 				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none"
+				class="inline-flex items-center px-2.5 py-1.5 text-xs font-medium rounded text-paragraph bg-white hover:bg-gray-50 focus:outline-none"
 				on:click={() => {
 					showMeta = !showMeta;
 				}}>Meta</button
 			>
 			<button
 				type="button"
-				class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+				class="inline-flex items-center px-2.5 py-1.5 border border-gray-300 shadow-sm text-xs font-medium rounded text-paragraph bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 				on:click={() => saveNote(false)}>Save</button
 			>
 		</div>
@@ -288,7 +288,7 @@
 						</svg>
 					</div>
 					<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-						<h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+						<h3 class="text-lg leading-6 font-medium text-title" id="modal-title">
 							Missing title
 						</h3>
 						<div class="mt-2">
@@ -302,7 +302,7 @@
 				<div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
 					<button
 						type="button"
-						class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+						class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-paragraph hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
 						on:click={() => {
 							noTitleError = !noTitleError;
 						}}>Ok</button
@@ -373,7 +373,7 @@
 						</svg>
 					</div>
 					<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-						<h3 class="text-lg leading-6 font-medium text-gray-900" id="modal-title">
+						<h3 class="text-lg leading-6 font-medium text-title" id="modal-title">
 							Delete note
 						</h3>
 						<div class="mt-2">
@@ -392,7 +392,7 @@
 					>
 					<button
 						type="button"
-						class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
+						class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-paragraph hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:w-auto sm:text-sm"
 						on:click={() => {
 							isDeleting = !isDeleting;
 						}}>Cancel</button
@@ -420,13 +420,13 @@
 				<input
 					id="publish"
 					type="checkbox"
-					class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+					class="h-4 w-4 text-link focus:ring-indigo-500 border-gray-300 rounded"
 					on:change={(e) => {
 						remainDraft = !e.target.checked;
 						contentChanged();
 					}}
 				/>
-				<label for="publish" class="ml-2 block text-sm text-gray-900"> Publish </label>
+				<label for="publish" class="ml-2 block text-sm text-title"> Publish </label>
 			</div>
 		</div>
 	</div>

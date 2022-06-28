@@ -14,8 +14,8 @@
 	<div class="hidden print:block">
 		<div class="flex flex-row">
 			<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
-				<h2 class="font-semibold text-lg">Printing or exporting to PDF?</h2>
-				<p class="pt-2 text-gray-700">
+				<h2>Printing or exporting to PDF?</h2>
+				<p class="pt-2">
 					If you can see this, then it means you are viewing a printed or PDF version of my personal
 					page (which means it might be outdated). Please visit https://untitled.codes/nico for the
 					latest information, sorry for you inconvenience. Version exported {month +
@@ -24,9 +24,9 @@
 			</div>
 		</div>
 	</div>
-	<h1 class="font-semibold text-2xl">Runkai (Nico) Zhang</h1>
-	<p class="pt-2 text-gray-700">
-		<a href="mailto:runkai@untitled.codes">runkai@untitled.codes</a>
+	<h1>Runkai (Nico) Zhang</h1>
+	<p class="pt-2">
+		<HyperLink link="mailto:runkai@untitled.codes">runkai@untitled.codes</HyperLink>
 		<br />
 		I am an high school student pursuing my interests in computer science.
 		<br />
@@ -40,8 +40,8 @@
 	</p>
 	<div class="flex flex-row">
 		<div class="basis-full border border-gray-200 rounded-md p-4 my-6">
-			<h2 class="font-semibold text-lg">A work in progress.</h2>
-			<p class="pt-2 text-gray-700">
+			<h2>A work in progress.</h2>
+			<p class="pt-2">
 				I am still compiling and designing what is going to be placed inside this section, so bear
 				with me for now.
 			</p>
@@ -49,15 +49,15 @@
 	</div>
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
-			<h1 class="text-xl font-semibold text-gray-900">High School</h1>
+			<h2>High School</h2>
 		</div>
-		<h2>Northfield Mount Hermon '23</h2>
+		<p>Northfield Mount Hermon '23</p>
 	</div>
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
-			<h1 class="text-xl font-semibold text-gray-900">Middle School</h1>
+			<h2>Middle School</h2>
 		</div>
-		<h2>The Bement School '20</h2>
+		<p>The Bement School '20</p>
 	</div>
 	<br />
 	<p>

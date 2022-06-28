@@ -1,7 +1,7 @@
 <div class="bg-white rounded-md border border-gray-200 drop-shadow-sm divide-y">
 	<div class="m-4 prose">
 		<h3 class="text-lg mb-1 font-medium ">Ipsum Lorem</h3>
-		<p class="text-gray-700 mb-2">
+		<p class="text-paragraph mb-2">
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus
 			tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
 		</p>

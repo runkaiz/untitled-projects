@@ -9,14 +9,10 @@ module.exports = {
 		},
 		extend: {
 			colors: {
-				BlueNCS: {
-					100: '#EDF7FC',
-					200: '#DCEEF8',
-					300: '#E4F1F9',
-					400: '#D3E7F1',
-					500: '#89BCD7',
-					600: '#056EA6'
-				}
+				link: '#5047E5',
+				linkHover: '49 46 129',
+				paragraph: '#374151',
+				title: '#111827',
 			},
 			order: {
 				second: '-9998'

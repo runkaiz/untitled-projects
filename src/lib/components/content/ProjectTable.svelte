@@ -1,4 +1,6 @@
 <script>
+	import HyperLink from "./HyperLink.svelte";
+
 	export let title;
 	export let subtitle;
 	export let buttonText;
@@ -8,16 +10,16 @@
 <div>
 	<div class="sm:flex sm:items-center">
 		<div class="sm:flex-auto">
-			<h1 class="text-xl font-semibold text-gray-900">{title}</h1>
-			<p class="mt-2 text-sm text-gray-700">{subtitle}</p>
+			<h1>{title}</h1>
+			<p class="mt-2">{subtitle}</p>
 		</div>
 		<div class="mt-4 sm:mt-0 sm:ml-16 sm:flex-none">
-			<a href={buttonLink}
+			<HyperLink link={buttonLink}
 				><button
 					type="button"
-					class="inline-flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
+					class="inline-flex items-center justify-center rounded-md border border-transparent bg-link px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 sm:w-auto"
 					>{buttonText}</button
-				></a
+				></HyperLink
 			>
 		</div>
 	</div>
@@ -30,19 +32,19 @@
 							<tr>
 								<th
 									scope="col"
-									class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"
+									class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-title sm:pl-6"
 									>Name</th
 								>
-								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-title"
 									>Platform</th
 								>
-								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-title"
 									>Language</th
 								>
-								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-title"
 									>Status</th
 								>
-								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">
+								<th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-title">
 									Source<span class="sr-only">Edit</span>
 								</th>
 							</tr>

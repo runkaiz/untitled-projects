@@ -21,7 +21,7 @@
 <MainPanel>
 	<div class="flex min-h-[60vh] items-center justify-center">
 		<div class="text-center space-y-2">
-			<h1 class="text-lg">{message}</h1>
+			<h1>{message}</h1>
 			<p class="text-lg text-gray-300">{code}</p>
 		</div>
 	</div>

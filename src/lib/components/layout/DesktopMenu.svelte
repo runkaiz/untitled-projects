@@ -22,7 +22,7 @@
 							<div class="pt-3 first:pt-0">
 								{#if group.name}
 									<div
-										class="text-gray-900 flex items-center px-2 py-2 font-medium text-sm rounded-md"
+										class="text-title flex items-center px-2 py-2 font-medium text-sm rounded-md"
 									>
 										{group.name}
 									</div>
@@ -33,8 +33,8 @@
 										target={item.href.startsWith('http') ? '_blank' : ''}
 										class="{item.href.split('/')[1] === $page.url.pathname.split('/')[1] &&
 										!item.href.startsWith('http')
-											? 'text-gray-900 bg-gray-50'
-											: 'text-gray-700 hover:bg-gray-50 hover:text-gray-900 transition-colors'} flex items-center px-2 py-2 mb-1 text-sm rounded-md"
+											? 'text-title bg-gray-50'
+											: 'text-paragraph hover:bg-gray-50 hover:text-title transition-colors'} flex items-center px-2 py-2 mb-1 text-sm rounded-md"
 									>
 										<i class="{item.iconClass} mr-2 items-center" />
 										{item.label}

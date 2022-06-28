@@ -1,5 +1,6 @@
 <script>
 	export let link;
+	export let newWindow = false;
 </script>
 
-<a class="text-indigo-600 hover:text-indigo-900" href={link}><slot /></a>
+<a class="hyperlink" href={link} target={ newWindow ? "_blank" : "" }><slot /></a>

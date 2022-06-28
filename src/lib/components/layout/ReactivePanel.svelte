@@ -59,7 +59,7 @@
 						>
 							<div class="py-6 px-4 bg-gray-50 sm:px-6">
 								<div class="flex items-center justify-between">
-									<h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
+									<h2 id="slide-over-title">
 										{title}
 									</h2>
 									<div class="ml-3 h-7 flex items-center">
