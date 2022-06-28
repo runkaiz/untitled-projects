@@ -13,7 +13,7 @@
 		This site runs on our hand-crafted <HyperLink
 			link="https://github.com/runkaiz/untitled-projects"
 			newWindow={true}>code</HyperLink
-		>. For now, you c>an take a look at the code on GitHub. The project is still in early development,
+		>. For now, you can take a look at the code on GitHub. The project is still in early development,
 		so please do not send new issues or pull requests. It's not ready yet.
 	</DescriptionBox>
 </MainPanel>
