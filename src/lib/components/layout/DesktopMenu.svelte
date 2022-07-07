@@ -1,7 +1,7 @@
 <script>
 	import { page, session } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
-	export let shouldShowLogin;
+	export let shouldShowLogin = false;
 </script>
 
 <div class="hidden lg:flex lg:flex-shrink-0 lg:fixed lg:inset-y-0 z-50 print:hidden">

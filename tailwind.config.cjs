@@ -10,7 +10,8 @@ module.exports = {
 		extend: {
 			colors: {
 				link: '#5047E5',
-				linkHover: '49 46 129',
+				linkHover: '#4338ca',
+				linkFocus: '#6366f1',
 				paragraph: '#374151',
 				title: '#111827'
 			},
