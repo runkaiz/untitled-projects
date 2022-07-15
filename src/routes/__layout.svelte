@@ -8,6 +8,7 @@
 	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 	import { session } from '$app/stores';
+	import { site_title } from '$lib/environment';
 
 	let url;
 	let isANoteOpen = false;
@@ -47,7 +48,7 @@
 		href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
 		rel="stylesheet"
 	/>
-	<title>Untitled Projects</title>
+	<title>{site_title}</title>
 </svelte:head>
 
 <div class="min-h-screen flex">

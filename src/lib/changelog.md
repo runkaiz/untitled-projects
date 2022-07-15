@@ -18,6 +18,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Nico's profile
 - Changelog
 - Website base layout
-- Establish default theme
+- Establish default theme (TailwindCSS)
+- Implement white label functionality (more configuration options coming soon) with env
 
 [unreleased]: https://github.com/runkaiz/untitled-projects/
