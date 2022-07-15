@@ -46,6 +46,11 @@ export const menuItems = [
 		name: 'Misc',
 		items: [
 			{
+				iconClass: 'ri-chat-private-line',
+				label: 'Chat',
+				href: 'https://chat.untitled.codes'
+			},
+			{
 				iconClass: 'ri-bar-chart-2-line',
 				label: 'Status Report',
 				href: 'https://status.untitled.codes'
