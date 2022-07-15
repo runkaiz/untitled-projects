@@ -22,7 +22,7 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
-	import { session, page } from '$app/stores';
+	import { session, page, navigating } from '$app/stores';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
 	export let notes;
@@ -51,7 +51,7 @@
 
 <MainPanel>
 	<div class="mt-6 lg:mt-0">
-		<slot />
+		{#if $navigating} Loading... {:else} <slot /> {/if}
 	</div>
 </MainPanel>
 {#if showSidePanel || innerWidth > 640}
