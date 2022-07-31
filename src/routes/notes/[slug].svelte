@@ -23,6 +23,7 @@
 	import { session } from '$app/stores';
 	import md from '$lib/utils/markdown';
 	import { afterUpdate } from 'svelte';
+	import { site_title } from '$lib/environment';
 
 	export let note;
 
@@ -51,6 +52,10 @@
 		return str;
 	}
 </script>
+
+<svelte:head>
+	<title>Notes • {note.title}</title>
+</svelte:head>
 
 {#if $session.user && $session.user.isAdmin}
 	{#if note.isDraft}

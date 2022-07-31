@@ -5,6 +5,10 @@
 	import { site_title } from '$lib/environment';
 </script>
 
+<svelte:head>
+	<title>{site_title}</title>
+</svelte:head>
+
 <MainPanel>
 	<h1>{site_title}</h1>
 	<p class="pt-2">

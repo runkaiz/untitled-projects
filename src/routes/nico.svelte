@@ -4,12 +4,17 @@
 	import Project from '$lib/components/content/items/Project.svelte';
 	import ProjectTable from '$lib/components/content/ProjectTable.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
+	import { site_title } from '$lib/environment';
 
 	let time = new Date();
 	$: date = time.getDate();
 	$: month = time.getMonth();
 	$: year = time.getFullYear();
 </script>
+
+<svelte:head>
+	<title>{site_title} • Nico</title>
+</svelte:head>
 
 <MainPanel>
 	<div class="hidden print:block">
