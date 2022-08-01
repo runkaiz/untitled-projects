@@ -6,12 +6,13 @@ let md = new MarkdownIt({
 	highlight: function (str, lang) {
 		if (lang && hljs.getLanguage(lang)) {
 			try {
-				return hljs.highlight(str, { language: lang }).value;
-			} catch (e) {
-				// eslint-disable-next-line no-console
-				console.error('Failed to highlight string');
-			}
-		}
+				return (
+					'<pre class="hljs whitespace-pre-wrap"><code>' +
+					hljs.highlight(str, { language: lang, ignoreIllegals: true }).value +
+					'</code></pre>'
+				);
+			} catch (__) {}
+		}	
 		return '<pre class="hljs"><code>' + md.utils.escapeHtml(str) + '</code></pre>';
 	}
 });

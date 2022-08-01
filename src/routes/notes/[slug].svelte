@@ -23,7 +23,6 @@
 	import { session } from '$app/stores';
 	import md from '$lib/utils/markdown';
 	import { afterUpdate } from 'svelte';
-	import { site_title } from '$lib/environment';
 
 	export let note;
 
@@ -118,6 +117,13 @@
 	{/if}
 </p>
 
-<article class="prose text-black">
+<!-- Svelte removes any CSS selector when it does not find it in plaintext so for @html this is the only way to apply style -->
+<style>
+	.wrapper > :global(whitespace-pre-wrap) {
+		white-space: pre-wrap;
+	}
+</style>
+
+<article class="wrapper prose text-black">
 	{@html rendered}
 </article>
