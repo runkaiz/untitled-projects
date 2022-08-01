@@ -37,7 +37,6 @@
 
 	async function saveNote(redirect) {
 		if (!contentChanged()) {
-			console.log('Huh?');
 			return;
 		}
 
