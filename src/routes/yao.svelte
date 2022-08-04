@@ -1,6 +1,4 @@
 <script>
-	import DescriptionBox from '$lib/components/content/DescriptionBox.svelte';
-	import HyperLink from '$lib/components/content/HyperLink.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import { site_title } from '$lib/environment';
 </script>
