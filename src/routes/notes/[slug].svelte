@@ -122,6 +122,15 @@
 	.wrapper > :global(whitespace-pre-wrap) {
 		white-space: pre-wrap;
 	}
+	.wrapper > :global(p) > :global(img) {
+		border-radius: 0.375rem;
+	}
+
+	@media (min-width: 640px) {
+		.wrapper > :global(p) > :global(img) {
+			border-radius: 0.5rem;
+		}
+	}
 </style>
 
 <article class="wrapper prose text-black">
