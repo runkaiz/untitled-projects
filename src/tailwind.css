@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+	body {
+		@apply bg-white;
+	}
+
 	h1 {
 		@apply font-semibold text-2xl text-title;
 	}
