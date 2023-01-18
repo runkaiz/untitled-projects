@@ -1,6 +1,7 @@
+import { json } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 
-export async function get({ params }) {
+export async function GET({ params }) {
 	const { slug } = params;
 
 	try {
@@ -14,17 +15,13 @@ export async function get({ params }) {
 
 		if (!note) throw new Error('Note not found');
 
-		return {
-			status: 200,
-			body: note
-		};
+        return new Response(JSON.stringify({ body: note }));
 	} catch (error) {
-		return {
-			status: 404,
-			body: {
-				error: error.message,
-				code: error.code
-			}
-		};
+		return json({
+			error: error.message,
+			code: error.code
+		}, {
+			status: 404
+		});
 	}
 }

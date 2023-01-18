@@ -1,38 +1,34 @@
+import { json as json$1 } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 import { generateToken } from '$lib/utils/token';
 
-export async function get({ locals }) {
+export async function GET({ locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return {
-			status: result.status,
-			body: {
-				error: result.error
-			}
-		};
+		return json$1({
+			error: result.error
+		}, {
+			status: result.status
+		});
 	}
 
-	return {
-		status: 200,
-		body: {
-			userId: result.user.id,
-			name: result.user.name,
-			email: result.user.email
-		}
-	};
+	return json$1({
+		userId: result.user.id,
+		name: result.user.name,
+		email: result.user.email
+	});
 }
 
-export async function put({ request, locals }) {
+export async function PUT({ request, locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return {
-			status: result.status,
-			body: {
-				error: result.error
-			}
-		};
+		return json$1({
+			error: result.error
+		}, {
+			status: result.status
+		});
 	}
 
 	const user = result.user;
@@ -51,31 +47,28 @@ export async function put({ request, locals }) {
 
 	const token = generateToken(updatedUser);
 
-	return {
-		status: 200,
+	return json$1({
+		userId: updatedUser.id,
+		name: updatedUser.name,
+		email: updatedUser.email
+	}, {
 		headers: {
 			'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
 				Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
 			).toUTCString()}; Path=/`
-		},
-		body: {
-			userId: updatedUser.id,
-			name: updatedUser.name,
-			email: updatedUser.email
 		}
-	};
+	});
 }
 
-export async function del({ locals }) {
+export async function DELETE({ locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return {
-			status: result.status,
-			body: {
-				error: result.error
-			}
-		};
+		return json$1({
+			error: result.error
+		}, {
+			status: result.status
+		});
 	}
 
 	const user = result.user;
@@ -86,15 +79,13 @@ export async function del({ locals }) {
 		}
 	});
 
-	return {
-		status: 200,
+	return json$1({
+		message: 'User deleted'
+	}, {
 		headers: {
 			'Set-Cookie': 'token=; Max-Age=0'
-		},
-		body: {
-			message: 'User deleted'
 		}
-	};
+	});
 }
 
 // This function is used to find the user with a valid token.

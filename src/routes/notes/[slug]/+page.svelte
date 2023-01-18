@@ -1,35 +1,15 @@
-<script context="module">
-	export async function load({ params, fetch }) {
-		const url = `/notes/${params.slug}.json`;
-		const res = await fetch(url);
-
-		if (res.ok) {
-			return {
-				props: {
-					note: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Failed to load ${url}`)
-		};
-	}
-</script>
-
 <script>
 	import { goto } from '$app/navigation';
 	import { session } from '$app/stores';
 	import md from '$lib/utils/markdown';
 	import { afterUpdate } from 'svelte';
 
-	export let note;
+	export let data;
 
 	let rendered = '';
 
 	afterUpdate(() => {
-		rendered = md.render(note.content);
+		rendered = md.render(data.note.content);
 	});
 
 	function convertDate(date) {
@@ -53,11 +33,11 @@
 </script>
 
 <svelte:head>
-	<title>Notes • {note.title}</title>
+	<title>Notes • {data.note.title}</title>
 </svelte:head>
 
 {#if $session.user && $session.user.isAdmin}
-	{#if note.isDraft}
+	{#if data.note.isDraft}
 		<!-- This example requires Tailwind CSS v2.0+ -->
 		<div class="bg-gray-50 rounded-md sm:rounded-lg mb-6">
 			<div class="px-4 py-5 sm:p-6">
@@ -70,7 +50,7 @@
 						type="button"
 						class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-paragraph bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
 						on:click={() => {
-							goto(`/compose/${note.slug}`);
+							goto(`/compose/${data.note.slug}`);
 						}}>Open Composer</button
 					>
 				</div>
@@ -88,7 +68,7 @@
 						type="button"
 						class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm font-medium rounded-md text-paragraph bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm"
 						on:click={() => {
-							goto(`/compose/${note.slug}`);
+							goto(`/compose/${data.note.slug}`);
 						}}>Open Composer</button
 					>
 				</div>
@@ -97,16 +77,16 @@
 	{/if}
 {/if}
 
-<h1>{note.title}</h1>
+<h1>{data.note.title}</h1>
 
 <p class="text-gray-600 pt-2 pb-4">
-	{note.isDraft ? 'Updated' : 'Published'} on {convertDate(new Date(note.updatedAt))} by {note
+	{data.note.isDraft ? 'Updated' : 'Published'} on {convertDate(new Date(data.note.updatedAt))} by {data.note
 		.author.name}
-	{#if note.coauthors.length > 0}
+	{#if data.note.coauthors.length > 0}
 		and
-		{#each note.coauthors as coauthor, index}
+		{#each data.note.coauthors as coauthor, index}
 			{#if index > 0}
-				{#if index === note.coauthors.length - 1}
+				{#if index === data.note.coauthors.length - 1}
 					and
 				{:else}
 					,

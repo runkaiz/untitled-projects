@@ -1,8 +1,9 @@
+import { json as json$1 } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcryptjs';
 import { generateToken } from '$lib/utils/token';
 
-export async function post({ request, locals }) {
+export async function POST({ request, locals }) {
 	const body = await request.json();
 	try {
 		if (!locals.user || !locals.user.isAdmin)
@@ -32,28 +33,23 @@ export async function post({ request, locals }) {
 
 		const token = generateToken(user);
 
-		return {
-			status: 200,
-			// Set token as a HTTP only cookie.
-			// This is to prevent the token from being read by XSS.
+		return json$1({
+			error: null,
+			user: {
+				userId: user.id,
+				name: user.name,
+				isAdmin: user.role === 'ADMIN'
+			}
+		}, {
 			headers: {
 				'Set-Cookie': `token=${token}; HttpOnly`
-			},
-			body: {
-				error: null,
-				user: {
-					userId: user.id,
-					name: user.name,
-					isAdmin: user.role === 'ADMIN'
-				}
 			}
-		};
+		});
 	} catch (error) {
-		return {
-			status: 401,
-			body: {
-				error: error.message
-			}
-		};
+		return json$1({
+			error: error.message
+		}, {
+			status: 401
+		});
 	}
 }

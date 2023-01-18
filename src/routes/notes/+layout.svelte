@@ -1,23 +1,3 @@
-<script context="module">
-	export async function load({ fetch }) {
-		const url = `/notes/list.json`;
-		const res = await fetch(url);
-
-		if (res.ok) {
-			return {
-				props: {
-					notes: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: res.status,
-			error: new Error(`Failed to load ${url}`)
-		};
-	}
-</script>
-
 <script>
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
@@ -25,7 +5,7 @@
 	import { session, page, navigating } from '$app/stores';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
-	export let notes;
+	export let data;
 
 	let showSidePanel = false;
 	let innerWidth = 0;
@@ -58,7 +38,7 @@
 	{#if innerWidth < 1024}
 		<div class="mt-11 flex">
 			<SidePanel>
-				{#each notes as note}
+				{#each data.notes as note}
 					{#if $session.user !== null && $session.user.isAdmin}
 						<ArticleTile {...note} />
 					{:else if !note.isDraft}
@@ -69,7 +49,7 @@
 		</div>
 	{:else}
 		<SidePanel>
-			{#each notes as note}
+			{#each data.notes as note}
 				{#if $session.user !== null && $session.user.isAdmin}
 					<ArticleTile {...note} />
 				{:else if !note.isDraft}

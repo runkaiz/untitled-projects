@@ -1,8 +1,9 @@
+import { json as json$1 } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 import * as bcrypt from 'bcryptjs';
 import { generateToken } from '$lib/utils/token';
 
-export async function post({ request }) {
+export async function POST({ request }) {
 	const body = await request.json();
 	try {
 		const { email, password, remember } = body;
@@ -19,43 +20,35 @@ export async function post({ request }) {
 		const token = generateToken(user);
 
 		if (!remember) {
-			return {
-				status: 200,
-				body: {
-					error: null,
-					user: {
-						userId: user.id,
-						name: user.name,
-						isAdmin: user.role === 'ADMIN'
-					}
-				}
-			};
-		}
-
-		return {
-			status: 200,
-			// Set token as a HTTP only cookie.
-			// This is to prevent the token from being read by XSS.
-			headers: {
-				'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
-					Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
-				).toUTCString()}; Path=/`
-			},
-			body: {
+			return json$1({
 				error: null,
 				user: {
 					userId: user.id,
 					name: user.name,
 					isAdmin: user.role === 'ADMIN'
 				}
+			});
+		}
+
+		return json$1({
+			error: null,
+			user: {
+				userId: user.id,
+				name: user.name,
+				isAdmin: user.role === 'ADMIN'
 			}
-		};
+		}, {
+			headers: {
+				'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
+					Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
+				).toUTCString()}; Path=/`
+			}
+		});
 	} catch (error) {
-		return {
-			status: 401,
-			body: {
-				error: error.message
-			}
-		};
+		return json$1({
+			error: error.message
+		}, {
+			status: 401
+		});
 	}
 }

@@ -1,7 +1,8 @@
+import { json as json$1 } from '@sveltejs/kit';
 import * as bcrypt from 'bcryptjs';
 import { prisma } from '$lib/prisma';
 
-export async function post({ request, locals }) {
+export async function POST({ request, locals }) {
 	try {
 		const body = await request.json();
 		const { currentPassword, newPassword } = body;
@@ -32,18 +33,14 @@ export async function post({ request, locals }) {
 			}
 		});
 
-		return {
-			status: 200,
-			body: {
-				message: 'Password updated'
-			}
-		};
+		return json$1({
+			message: 'Password updated'
+		});
 	} catch (error) {
-		return {
-			status: 400,
-			body: {
-				message: error.message
-			}
-		};
+		return json$1({
+			message: error.message
+		}, {
+			status: 400
+		});
 	}
 }

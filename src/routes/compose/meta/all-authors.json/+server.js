@@ -1,11 +1,9 @@
+import { json } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 
-export async function get({ locals }) {
+export async function GET({ locals }) {
 	if (!locals.user || !locals.user.isAdmin) {
-		return {
-			status: 403,
-			error: 'Unauthenticated.'
-		};
+		return new Response(undefined, { status: 403 });
 	}
 
 	const otherAdmins = await prisma.user.findMany({
@@ -20,10 +18,7 @@ export async function get({ locals }) {
 		coauthors = [...coauthors, admin];
 	});
 
-	return {
-		status: 200,
-		body: {
-			payload: coauthors
-		}
-	};
+	return json({
+		payload: coauthors
+	});
 }

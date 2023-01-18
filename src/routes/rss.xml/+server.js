@@ -1,3 +1,4 @@
+import { json } from '@sveltejs/kit';
 import { getNotes } from '$lib/utils/getNotes';
 import MarkdownIt from 'markdown-it';
 import 'highlight.js/styles/github-dark.css';
@@ -18,7 +19,7 @@ const md = new MarkdownIt({
 	}
 });
 
-export async function get() {
+export async function GET() {
 	const notes = await getNotes();
 	const body = xml(notes);
 
@@ -26,10 +27,8 @@ export async function get() {
 		'Cache-Control': 'max-age=0, s-maxage=3600',
 		'Content-Type': 'application/xml'
 	};
-	return {
-		headers,
-		body
-	};
+
+    return new Response(body, headers);
 }
 
 const xml = (notes) =>

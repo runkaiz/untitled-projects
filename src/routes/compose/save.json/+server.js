@@ -1,12 +1,10 @@
+import { json as json$1 } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 
-export async function post({ request, locals }) {
+export async function POST({ request, locals }) {
 	// Check auth.
 	if (!locals.user || !locals.user.userId) {
-		return {
-			status: 403,
-			error: 'Unauthenticated. Please provide a valid cookie.'
-		};
+		return new Response(undefined, { status: 403 });
 	}
 
 	try {
@@ -53,19 +51,15 @@ export async function post({ request, locals }) {
 			}
 		});
 
-		return {
-			status: 200,
-			body: {
-				message: 'Note saved.',
-				note: note
-			}
-		};
+		return json$1({
+			message: 'Note saved.',
+			note: note
+		});
 	} catch (error) {
-		return {
-			status: 400,
-			body: {
-				message: error.message
-			}
-		};
+		return json$1({
+			message: error.message
+		}, {
+			status: 400
+		});
 	}
 }

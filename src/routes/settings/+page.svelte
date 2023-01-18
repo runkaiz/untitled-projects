@@ -1,30 +1,3 @@
-<script context="module">
-	export async function load({ session, fetch }) {
-		if (!session.user) {
-			return {
-				status: 307,
-				redirect: '/'
-			};
-		}
-
-		const url = `/auth/me.json`;
-		const res = await fetch(url);
-
-		if (res.ok) {
-			return {
-				props: {
-					user: await res.json()
-				}
-			};
-		}
-
-		return {
-			status: 500,
-			error: 'Failed to load user'
-		};
-	}
-</script>
-
 <script>
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import TextField from '$lib/components/base/TextField.svelte';
@@ -33,7 +6,7 @@
 	import { session } from '$app/stores';
 	import Notification from '$lib/components/base/Notification.svelte';
 
-	export let user;
+	export let data;
 
 	let notificationMessages = [];
 
@@ -55,7 +28,7 @@
 		});
 
 		if (res.ok) {
-			this.user = await res.json();
+			this.data.user = await res.json();
 			notificationMessages = [
 				...notificationMessages,
 				{
@@ -130,7 +103,7 @@
 	<div
 		class="border border-emerald-200 bg-emerald-50 rounded-md p-2 mt-5 text-emerald-600 flex flex-row justify-between"
 	>
-		<p>👋 You are logged in as {user.name}.</p>
+		<p>👋 You are logged in as {data.user.name}.</p>
 		<button on:click={logout}><i class="ri-logout-box-r-line pr-1" /></button>
 	</div>
 
@@ -144,10 +117,10 @@
 					</div>
 					<div class="grid grid-cols-6 gap-6">
 						<div class="col-span-6 sm:col-span-3">
-							<TextField label="Email" name="email" value={user.email} />
+							<TextField label="Email" name="email" value={data.user.email} />
 						</div>
 						<div class="col-span-6 sm:col-span-3">
-							<TextField label="Display name" name="name" value={user.name} />
+							<TextField label="Display name" name="name" value={data.user.name} />
 						</div>
 						<div class="col-span-6 sm:col-span-3">
 							<PasswordField

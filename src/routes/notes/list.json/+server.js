@@ -1,6 +1,7 @@
+import { json } from '@sveltejs/kit';
 import { prisma } from '$lib/prisma';
 
-export async function get() {
+export async function GET() {
 	try {
 		const notes = await prisma.note.findMany({
 			orderBy: {
@@ -29,16 +30,12 @@ export async function get() {
 			isDraft: note.isDraft
 		}));
 
-		return {
-			status: 200,
-			body: data
-		};
+        return new Response(JSON.stringify({ body: data }));
 	} catch (error) {
-		return {
-			status: 500,
-			body: {
-				error: 'Internal Server Error'
-			}
-		};
+		return json({
+			error: 'Internal Server Error'
+		}, {
+			status: 500
+		});
 	}
 }
