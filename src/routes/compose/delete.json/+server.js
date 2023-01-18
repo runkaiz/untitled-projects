@@ -19,10 +19,13 @@ export async function POST({ request, locals }) {
 			message: 'Note deleted.'
 		});
 	} catch (error) {
-		return json$1({
-			message: error.message
-		}, {
-			status: 400
-		});
+		return json$1(
+			{
+				message: error.message
+			},
+			{
+				status: 400
+			}
+		);
 	}
 }

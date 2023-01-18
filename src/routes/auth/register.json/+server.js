@@ -33,23 +33,29 @@ export async function POST({ request, locals }) {
 
 		const token = generateToken(user);
 
-		return json$1({
-			error: null,
-			user: {
-				userId: user.id,
-				name: user.name,
-				isAdmin: user.role === 'ADMIN'
+		return json$1(
+			{
+				error: null,
+				user: {
+					userId: user.id,
+					name: user.name,
+					isAdmin: user.role === 'ADMIN'
+				}
+			},
+			{
+				headers: {
+					'Set-Cookie': `token=${token}; HttpOnly`
+				}
 			}
-		}, {
-			headers: {
-				'Set-Cookie': `token=${token}; HttpOnly`
-			}
-		});
+		);
 	} catch (error) {
-		return json$1({
-			error: error.message
-		}, {
-			status: 401
-		});
+		return json$1(
+			{
+				error: error.message
+			},
+			{
+				status: 401
+			}
+		);
 	}
 }

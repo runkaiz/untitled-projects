@@ -25,11 +25,11 @@ export const menuItems = [
 				label: 'Sdartistics',
 				href: 'https://github.com/runkaiz/sdartistics'
 			},
-            {
-                iconClass: 'ri-contrast-2-line',
-                label: 'Shift C',
-                href: 'https://shiftc.app/'
-            }
+			{
+				iconClass: 'ri-contrast-2-line',
+				label: 'Shift C',
+				href: 'https://shiftc.app/'
+			}
 		]
 	},
 	{

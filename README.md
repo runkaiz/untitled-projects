@@ -12,6 +12,7 @@ Although the site is completely customizable, it is going to be implemented in a
 The format conversion is as follows: `.env` VITE_SITE_TITLE => `environment.js` site_title
 
 Currently supported variables:
+
 - [x] VITE_SITE_TITLE: Default("Untitled Projects")
 
 ## Visualization of the Codebase

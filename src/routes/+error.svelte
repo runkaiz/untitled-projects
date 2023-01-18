@@ -1,10 +1,9 @@
 <script>
-    import { page } from '$app/stores';
+	import { page } from '$app/stores';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 </script>
 
 <title>{`${$page.status}: ${$page.error.message}`}</title>
-
 
 <MainPanel>
 	<div class="flex min-h-[60vh] items-center justify-center">

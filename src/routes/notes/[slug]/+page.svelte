@@ -1,6 +1,6 @@
 <script>
 	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
 	import md from '$lib/utils/markdown';
 	import { afterUpdate } from 'svelte';
 
@@ -36,7 +36,7 @@
 	<title>Notes • {data.note.title}</title>
 </svelte:head>
 
-{#if $session.user && $session.user.isAdmin}
+{#if $page.data.user && $page.data.user.isAdmin}
 	{#if data.note.isDraft}
 		<!-- This example requires Tailwind CSS v2.0+ -->
 		<div class="bg-gray-50 rounded-md sm:rounded-lg mb-6">
@@ -80,8 +80,8 @@
 <h1>{data.note.title}</h1>
 
 <p class="text-gray-600 pt-2 pb-4">
-	{data.note.isDraft ? 'Updated' : 'Published'} on {convertDate(new Date(data.note.updatedAt))} by {data.note
-		.author.name}
+	{data.note.isDraft ? 'Updated' : 'Published'} on {convertDate(new Date(data.note.updatedAt))} by {data
+		.note.author.name}
 	{#if data.note.coauthors.length > 0}
 		and
 		{#each data.note.coauthors as coauthor, index}
@@ -96,6 +96,12 @@
 		{/each}
 	{/if}
 </p>
+
+
+
+<article class="wrapper prose text-black">
+	{@html rendered}
+</article>
 
 <!-- Svelte removes any CSS selector when it does not find it in plaintext so for @html this is the only way to apply style -->
 <style>
@@ -112,7 +118,3 @@
 		}
 	}
 </style>
-
-<article class="wrapper prose text-black">
-	{@html rendered}
-</article>

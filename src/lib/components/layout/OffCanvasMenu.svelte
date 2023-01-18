@@ -1,6 +1,6 @@
 <script>
 	import classes from 'svelte-transition-classes';
-	import { page, session } from '$app/stores';
+	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
 	export let show = false;
 	export let shouldShowLogin;
@@ -130,7 +130,7 @@
 				</nav>
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-				{#if !$session.user}
+				{#if !$page.data.user}
 					<button
 						on:click={() => (shouldShowLogin = !shouldShowLogin)}
 						class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"
@@ -139,7 +139,7 @@
 					</button>
 				{:else}
 					<p class="flex-shrink-0 w-full group block text-center text-sm text-gray-500">
-						👋 Hi, {$session.user.name}!
+						👋 Hi, {$page.data.user.name}!
 					</p>
 				{/if}
 			</div>

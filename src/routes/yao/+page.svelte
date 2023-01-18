@@ -9,7 +9,5 @@
 
 <MainPanel>
 	<h1>Yaoyu Chen</h1>
-	<p class="pt-2">
-		This is a placeholder.
-	</p>
+	<p class="pt-2">This is a placeholder.</p>
 </MainPanel>

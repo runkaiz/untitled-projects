@@ -8,9 +8,9 @@ const config = {
 	kit: {
 		adapter: adapter()
 	},
-    extensions: ['.svelte', ...mdsvexConfig.extensions],
+	extensions: ['.svelte', ...mdsvexConfig.extensions],
 
-    preprocess: [mdsvex(mdsvexConfig), preprocess()]
+	preprocess: [mdsvex(mdsvexConfig), preprocess()]
 };
 
 export default config;

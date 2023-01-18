@@ -3,7 +3,7 @@
 	import TextField from '$lib/components/base/TextField.svelte';
 	import PasswordField from '$lib/components/base/PasswordField.svelte';
 	import { goto } from '$app/navigation';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
 	import Notification from '$lib/components/base/Notification.svelte';
 
 	export let data;
@@ -91,7 +91,7 @@
 		});
 
 		if (res.ok) {
-			$session.user = null;
+			$page.data.user = null;
 			goto('/');
 		}
 	}

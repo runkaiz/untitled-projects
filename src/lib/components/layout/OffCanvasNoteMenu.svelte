@@ -2,7 +2,7 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
 	import classes from 'svelte-transition-classes';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 
 	export let show = false;
@@ -114,7 +114,7 @@
 			<div on:click={() => (show = !show)}>
 				<SidePanel>
 					{#each notes as note}
-						{#if $session.user !== null && $session.user.isAdmin}
+						{#if $page.data.user !== null && $page.data.user.isAdmin}
 							<ArticleTile {...note} />
 						{:else if !note.isDraft}
 							<ArticleTile {...note} />

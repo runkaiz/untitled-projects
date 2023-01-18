@@ -30,25 +30,31 @@ export async function POST({ request }) {
 			});
 		}
 
-		return json$1({
-			error: null,
-			user: {
-				userId: user.id,
-				name: user.name,
-				isAdmin: user.role === 'ADMIN'
+		return json$1(
+			{
+				error: null,
+				user: {
+					userId: user.id,
+					name: user.name,
+					isAdmin: user.role === 'ADMIN'
+				}
+			},
+			{
+				headers: {
+					'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
+						Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
+					).toUTCString()}; Path=/`
+				}
 			}
-		}, {
-			headers: {
-				'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
-					Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
-				).toUTCString()}; Path=/`
-			}
-		});
+		);
 	} catch (error) {
-		return json$1({
-			error: error.message
-		}, {
-			status: 401
-		});
+		return json$1(
+			{
+				error: error.message
+			},
+			{
+				status: 401
+			}
+		);
 	}
 }

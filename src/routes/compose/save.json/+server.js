@@ -56,10 +56,13 @@ export async function POST({ request, locals }) {
 			note: note
 		});
 	} catch (error) {
-		return json$1({
-			message: error.message
-		}, {
-			status: 400
-		});
+		return json$1(
+			{
+				message: error.message
+			},
+			{
+				status: 400
+			}
+		);
 	}
 }

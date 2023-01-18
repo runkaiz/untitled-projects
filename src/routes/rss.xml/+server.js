@@ -28,7 +28,7 @@ export async function GET() {
 		'Content-Type': 'application/xml'
 	};
 
-    return new Response(body, headers);
+	return new Response(body, headers);
 }
 
 const xml = (notes) =>

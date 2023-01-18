@@ -30,12 +30,15 @@ export async function GET() {
 			isDraft: note.isDraft
 		}));
 
-        return new Response(JSON.stringify({ body: data }));
+		return new Response(JSON.stringify({ body: data }));
 	} catch (error) {
-		return json({
-			error: 'Internal Server Error'
-		}, {
-			status: 500
-		});
+		return json(
+			{
+				error: 'Internal Server Error'
+			},
+			{
+				status: 500
+			}
+		);
 	}
 }

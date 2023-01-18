@@ -1,5 +1,5 @@
 <script>
-	import { page, session } from '$app/stores';
+	import { page } from '$app/stores';
 	import { menuItems } from '$lib/menu-items';
 	export let shouldShowLogin = false;
 </script>
@@ -49,7 +49,7 @@
 				</nav>
 			</div>
 			<div class="flex-shrink-0 flex border-t border-gray-200 p-4">
-				{#if !$session.user}
+				{#if !$page.data.user}
 					<button
 						on:click={() => (shouldShowLogin = !shouldShowLogin)}
 						class="flex-shrink-0 w-full group block text-center text-sm text-gray-500"

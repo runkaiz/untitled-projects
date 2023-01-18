@@ -15,13 +15,16 @@ export async function GET({ params }) {
 
 		if (!note) throw new Error('Note not found');
 
-        return new Response(JSON.stringify({ body: note }));
+		return new Response(JSON.stringify({ body: note }));
 	} catch (error) {
-		return json({
-			error: error.message,
-			code: error.code
-		}, {
-			status: 404
-		});
+		return json(
+			{
+				error: error.message,
+				code: error.code
+			},
+			{
+				status: 404
+			}
+		);
 	}
 }

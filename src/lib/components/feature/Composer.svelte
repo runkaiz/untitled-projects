@@ -1,6 +1,5 @@
 <script>
 	import { onMount } from 'svelte';
-	import { session } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { page } from '$app/stores';
 	import SelectionMenu from '$lib/components/base/SelectionMenu.svelte';
@@ -12,7 +11,7 @@
 	export let content = '';
 	export let isDraft = true;
 	export let slug = null;
-	export let author = $session.user;
+	export let author = $page.data.user;
 	export let coauthors = [];
 
 	let preview = false;

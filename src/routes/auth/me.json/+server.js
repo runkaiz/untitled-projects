@@ -6,11 +6,14 @@ export async function GET({ locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return json$1({
-			error: result.error
-		}, {
-			status: result.status
-		});
+		return json$1(
+			{
+				error: result.error
+			},
+			{
+				status: result.status
+			}
+		);
 	}
 
 	return json$1({
@@ -24,11 +27,14 @@ export async function PUT({ request, locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return json$1({
-			error: result.error
-		}, {
-			status: result.status
-		});
+		return json$1(
+			{
+				error: result.error
+			},
+			{
+				status: result.status
+			}
+		);
 	}
 
 	const user = result.user;
@@ -47,28 +53,34 @@ export async function PUT({ request, locals }) {
 
 	const token = generateToken(updatedUser);
 
-	return json$1({
-		userId: updatedUser.id,
-		name: updatedUser.name,
-		email: updatedUser.email
-	}, {
-		headers: {
-			'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
-				Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
-			).toUTCString()}; Path=/`
+	return json$1(
+		{
+			userId: updatedUser.id,
+			name: updatedUser.name,
+			email: updatedUser.email
+		},
+		{
+			headers: {
+				'Set-Cookie': `token=${token}; HttpOnly; Expires=${new Date(
+					Date.now() + 5 * 365 * 24 * 60 * 60 * 1000
+				).toUTCString()}; Path=/`
+			}
 		}
-	});
+	);
 }
 
 export async function DELETE({ locals }) {
 	const result = await findSelf(locals);
 
 	if (result.status !== 200) {
-		return json$1({
-			error: result.error
-		}, {
-			status: result.status
-		});
+		return json$1(
+			{
+				error: result.error
+			},
+			{
+				status: result.status
+			}
+		);
 	}
 
 	const user = result.user;
@@ -79,13 +91,16 @@ export async function DELETE({ locals }) {
 		}
 	});
 
-	return json$1({
-		message: 'User deleted'
-	}, {
-		headers: {
-			'Set-Cookie': 'token=; Max-Age=0'
+	return json$1(
+		{
+			message: 'User deleted'
+		},
+		{
+			headers: {
+				'Set-Cookie': 'token=; Max-Age=0'
+			}
 		}
-	});
+	);
 }
 
 // This function is used to find the user with a valid token.

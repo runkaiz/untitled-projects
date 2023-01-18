@@ -37,10 +37,13 @@ export async function POST({ request, locals }) {
 			message: 'Password updated'
 		});
 	} catch (error) {
-		return json$1({
-			message: error.message
-		}, {
-			status: 400
-		});
+		return json$1(
+			{
+				message: error.message
+			},
+			{
+				status: 400
+			}
+		);
 	}
 }

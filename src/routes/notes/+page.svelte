@@ -1,5 +1,5 @@
 <script>
-    import { site_title } from "$lib/environment";
+	import { site_title } from '$lib/environment';
 </script>
 
 <svelte:head>

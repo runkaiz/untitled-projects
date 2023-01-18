@@ -2,7 +2,7 @@
 	import ArticleTile from '$lib/components/layout/ArticleTile.svelte';
 	import MainPanel from '$lib/components/layout/MainPanel.svelte';
 	import SidePanel from '$lib/components/layout/SidePanel.svelte';
-	import { session, page, navigating } from '$app/stores';
+	import { page, navigating } from '$app/stores';
 	import { beforeUpdate, afterUpdate } from 'svelte';
 
 	export let data;
@@ -39,7 +39,7 @@
 		<div class="mt-11 flex">
 			<SidePanel>
 				{#each data.notes as note}
-					{#if $session.user !== null && $session.user.isAdmin}
+					{#if $page.data.user !== null && $page.data.user.isAdmin}
 						<ArticleTile {...note} />
 					{:else if !note.isDraft}
 						<ArticleTile {...note} />
@@ -50,7 +50,7 @@
 	{:else}
 		<SidePanel>
 			{#each data.notes as note}
-				{#if $session.user !== null && $session.user.isAdmin}
+				{#if $page.data.user !== null && $page.data.user.isAdmin}
 					<ArticleTile {...note} />
 				{:else if !note.isDraft}
 					<ArticleTile {...note} />

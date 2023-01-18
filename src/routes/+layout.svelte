@@ -7,7 +7,7 @@
 	import OffCanvasNoteMenu from '$lib/components/layout/OffCanvasNoteMenu.svelte';
 	import MobileTopBar from '$lib/components/layout/MobileTopBar.svelte';
 	import { beforeUpdate, afterUpdate } from 'svelte';
-	import { session } from '$app/stores';
+	import { page } from '$app/stores';
 	import { site_title } from '$lib/environment';
 
 	let url;
@@ -36,7 +36,7 @@
 
 	function updateUser(event) {
 		showLogin = false;
-		$session.user = event.detail.user;
+		$page.data.user = event.detail.user;
 	}
 </script>
 
