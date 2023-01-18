@@ -24,7 +24,12 @@ export const menuItems = [
 				iconClass: 'ri-bubble-chart-line',
 				label: 'Sdartistics',
 				href: 'https://github.com/runkaiz/sdartistics'
-			}
+			},
+            {
+                iconClass: 'ri-contrast-2-line',
+                label: 'Shift C',
+                href: 'https://shiftc.app/'
+            }
 		]
 	},
 	{
